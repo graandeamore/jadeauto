@@ -10,10 +10,12 @@
   "author": "Nikita Borisenko <grs2143@mail.ru>",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.12.0-alpha.1",
@@ -31,6 +33,8 @@
     "sequelize": "ORM (Object-Relational Mapping)",
     "nodemon": "live reload in dev mode",
     "express-fileupload": "for express files uploads",
-    "uuid": "for generating unique id"
+    "uuid": "for generating unique id",
+    "bcrypt": "hash passwords and not keep them open",
+    "jsonwebtoken": "generate JWT (json-web-token (model: HEADER.PAYLOAD(EMAIL,NUMBER,PASSWORD).SIGNATURE))"
   }
 }
