@@ -59,7 +59,7 @@ Car.hasMany(CarsInOrder)
 CarsInOrder.belongsTo(Car)
 
 //4.ORDER_CAR-CAR hasOne
-Car.hasMany(CarInfo)
+Car.hasMany(CarInfo, {as: 'info'})
 CarInfo.belongsTo(Car)
 
 // 5.MANUFACTURER-CAR hasMany

@@ -25,9 +25,9 @@ const start = async () => {             //All queries to DataBase - async. Creat
         await sequelize.authenticate()    //DB connect
         await sequelize.sync()             //DB check Data schemes
         app.listen(PORT, () => console.log(`server started on port ${PORT}`) ) // start server and notification about
-    } catch (e){
+    } catch (e){                            // if error
         console.log(e)
     }
 }
 
-start()
+start()                 //run app
