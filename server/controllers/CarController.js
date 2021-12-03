@@ -6,10 +6,11 @@ const ApiError = require('../error/ApiError')                 //import API error
 class CarController {
     async create(req,res,next){                                 //create car
         try{
-            let {name, price, carManufacturerId, bodyTypeId, year, engine, drive, info} = req.body          //request info about car
+            let {name, price, carManufacturerId, bodyTypeId, year, engine, drive,mileage, info} = req.body          //request info about car
+
             const {img} = req.files                                                                 //request image
             let fileName = uuid.v4() + '.jpg'                                                           //generate unique filename
-            img.mv(path.resolve(__dirname,'..', 'static',fileName))                                         //create url and adapt to OS
+            img.mv(path.resolve(__dirname,'..', 'static',fileName))                                         //create url and adapt to O
 
             if (info){                      //if info (carInfo) consist in query
                 info = JSON.parse(info)         //data from form-data - it comes in String, so parse it (to Front -> JSON, to Back -> JS Objects)
@@ -21,7 +22,7 @@ class CarController {
                         })
                 )
             }
-            const car = await Car.create( {name, price, carManufacturerId, bodyTypeId, year, engine, drive, img: fileName })       //create car including info
+            const car = await Car.create( {name, price, carManufacturerId, bodyTypeId, year, engine, drive, mileage, img: fileName })       //create car including info
             return res.json(car)                     //return json result
         } catch (e){
             next(ApiError.badRequest(e.message))        //if error trigger badRequest
@@ -32,7 +33,7 @@ class CarController {
         let {carManufacturerId, bodyTypeId,limit,page} = req.query
         page = page || 1
         limit = limit || 9
-        let offset = page * limit - limit    //skip limit cars on next page
+        let offset = page * limit - limit                                 //skip limit cars on next page
         let cars;
         if (!carManufacturerId && !bodyTypeId){                                          //get all
             cars = await Car.findAndCountAll({limit, offset})   //for knowing total cars amount use findAndCountAll() instead of findAll() - for pagination

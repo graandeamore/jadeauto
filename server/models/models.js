@@ -18,14 +18,15 @@ const CarsInOrder = sequelize.define('cars_in_order', {
 })
 const Car = sequelize.define('car', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name:                {type: DataTypes.STRING,    allowNull: false},
-    price:               {type: DataTypes.INTEGER,   allowNull: false},
-    carManufacturerId:   {type: DataTypes.INTEGER,   allowNull: false},
-    bodyTypeId:          {type: DataTypes.INTEGER,   allowNull: false},
-    year:                {type: DataTypes.INTEGER,   allowNull: false},
-    engine:              {type: DataTypes.STRING,    allowNull: false},
-    drive:               {type: DataTypes.STRING,    allowNull: false},
-    img:                 {type: DataTypes.STRING,    allowNull: false}
+    price:               {type: DataTypes.INTEGER,   allowNull: false},         // Цена
+    carManufacturerId:   {type: DataTypes.INTEGER,   allowNull: false},         // ID Производителя  - сортировка
+    nameId:              {type: DataTypes.INTEGER,   allowNull: false},         // ID Названия       - сортировка
+    year:                {type: DataTypes.INTEGER,   allowNull: false},         // Год
+    engine:              {type: DataTypes.STRING,    allowNull: false},         // Двигатель
+    drive:               {type: DataTypes.STRING,    allowNull: false},         // Привод
+    mileage:             {type: DataTypes.STRING,    allowNull: false},         // Пробег
+    img:                 {type: DataTypes.STRING,    allowNull: false}          // Картинка (должно быть 20/неогр + video   )
+
 })
 
 const BodyType = sequelize.define('body_type', {

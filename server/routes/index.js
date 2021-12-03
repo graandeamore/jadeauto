@@ -1,6 +1,5 @@
 //main router
-const Router = require('express') //import router from express
-const router = new Router()  //create object from express-Router
+const router = require('express').Router()  //create router from express
 
     //import under-routers
 const carRouter = require('./CarRouter')
