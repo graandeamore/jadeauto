@@ -1,0 +1,25 @@
+@import "src/scss/variables";
+
+@mixin input(){
+  outline: none;
+  height: 30px;
+  &:active{
+    border: 1px solid $red;
+  }
+  &:hover{
+    border: 1px solid $red;
+  }
+}
+@mixin link(){
+  text-decoration: none;
+  color: $grey;
+  &:hover{
+    color: $red;
+    transition: color 0.3s;
+  }
+  &:active, &:focus{
+    color: $grey;
+    transition: color 0.3s;
+  }
+}
+

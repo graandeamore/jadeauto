@@ -3,7 +3,7 @@ import {makeAutoObservable} from "mobx";
 
 export default class UserStore {
     constructor() {                     //calls with creating UserStore object
-        this._isAuth = false            //"_" means unchangeable
+        this._isAuth = false           //"_" means unchangeable
         this._user= {}
         makeAutoObservable(this)        //with changing _isAuth & _user components will rerender
     }

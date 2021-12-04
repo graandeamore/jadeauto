@@ -1,9 +1,11 @@
 import React, {createContext} from 'react';
 import ReactDOM from 'react-dom';
+import './scss/index.module.scss';
 import App from './App';
 import UserStore from "./store/UserStore";
 import CarStore from "./store/CarStore";
 export const Context = createContext(null)
+
 
 ReactDOM.render(
   <Context.Provider value={{     //set Context

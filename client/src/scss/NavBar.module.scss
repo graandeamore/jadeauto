@@ -1,0 +1,68 @@
+@import 'variables';
+.NavBar{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  .NavBar-logo {
+    display: flex;
+    align-items: center;
+    img{
+      width: 100px;
+    }
+    span{
+      font-size: $f-middle;
+      color: #fefefe
+    }
+  }
+  .NavBar-nav{
+    display: flex;
+    align-items: center;
+    .NavBar-nav__phone{
+      margin-left: -20px ;
+      padding-right:10px ;
+
+      span{
+        color: $grey;
+
+      }
+      a{
+        color: white;
+        text-decoration: none;
+        &:hover{
+          color: $red;
+          transition: color 0.3s;
+        }
+        &:active, &:focus{
+          color: $grey;
+          transition: color 0.3s;
+        }
+      }
+    }
+    .NavBar-nav__spacer{
+      width: 2px;
+      height: 30px;
+      background-color: $grey;
+    }
+    .NavBar-nav__log{
+      margin-right: -10px ;
+      padding-left:10px ;
+      color: white;
+      cursor: pointer;
+
+      span:first-child{
+        padding-right:10px ;
+      }
+      span:last-child{
+        &:hover{
+          color: $red;
+          transition: color 0.3s;
+        }
+        &:active, &:focus{
+          color: $grey;
+          transition: color 0.3s;
+        }
+      }
+    }
+  }
+}
