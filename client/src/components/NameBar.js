@@ -1,22 +1,25 @@
 import React, {useContext} from 'react';
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
-import {Card} from "react-bootstrap";
+import classes from "../scss/NameBar.module.scss";
 
 const NameBar = observer(() => {
     const {car} = useContext(Context)
     return (
-        <div>
-            {car.cars.map(name =>
-            <Card
-                style={{cursor:"pointer", color:'black'}}
-                key={name.id}
-                onClick={()=> car.SetSelectedName(name)}
-                border={name.id === car.selectedName.id ? 'danger' : 'light'}
-            >
-                {name.name}
-            </Card>
-            )}
+        <div className={classes['NameBar']}>
+            <div className={classes['Sort__container-title']}>
+                <p>Название:</p>
+            </div>
+            <div className={classes['Sort__container-options']}>   {car.cars.map(name =>
+                <div className={classes['Sort__container-element']}
+                     style={name.id === car.selectedName.id ? {borderBottom:"2px solid #CD3319"}: {borderBottom:"none"}}
+                     key={name.id}
+                     onClick={()=> car.SetSelectedName(name)}
+                >
+                    {name.name}
+                </div>
+            )}</div>
+
         </div>
     );
 })

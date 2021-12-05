@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from '../scss/Auth.module.scss'
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from '../utils/consts'
-import Layout from "../containers/Layout/Layout";
+import Layout from "../utils/Layout";
 import {useLocation} from "react-router-dom";
 
 const Auth = () => {
@@ -25,7 +25,6 @@ const Auth = () => {
                 {!isLogin ? <a href={LOGIN_ROUTE}>Войти</a> : <a href={REGISTRATION_ROUTE}>Регистрация</a>}
             </div>
         </Layout>
-
     );
 };
 

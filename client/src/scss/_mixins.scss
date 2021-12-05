@@ -6,7 +6,7 @@
   font-size: $f-min;
   border-radius: 3px;
   border: 2px solid white;
-  margin-bottom: 40px ;
+  margin-bottom: 40px;
   background-color: #333;
   display: block;
   text-indent: 10px;
@@ -34,8 +34,34 @@
     transition: color 0.3s;
   }
 }
-
 @mixin button(){
+}
+@mixin sorting(){
+  .Sort__container-title{
+    p{
+      color: white;
+    }
+  }
+  .Sort__container-options{
+    display: flex;
+  }
+  .Sort__container-element{
+    border-bottom: 2px solid #333;
+    margin-right: 10px;
+    color: $grey;
+    cursor: pointer;
+    &:hover{
+      color: $red;
+      transition: color .3s;
+    }
+    &:active, &:focus{
+      color: white;
 
-
+    }
+  }
+}
+@mixin container(){
+  width: 1600px;
+  display: flex;
+  justify-content: center;
 }

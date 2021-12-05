@@ -1,10 +1,11 @@
 @import 'variables';
+
 .NavBar{
   display: flex;
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  .NavBar-logo {
+  .NavBar__logo {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -24,10 +25,10 @@
       }
     }
   }
-  .NavBar-nav{
+  .NavBar__nav{
     display: flex;
     align-items: center;
-    .NavBar-nav__phone{
+    .NavBar__nav-phone{
       margin-left: -20px ;
       padding-right:10px ;
 
@@ -48,12 +49,12 @@
         }
       }
     }
-    .NavBar-nav__spacer{
+    .NavBar__nav-spacer{
       width: 2px;
       height: 30px;
       background-color: $grey;
     }
-    .NavBar-nav__log{
+    .NavBar__nav-log{
       margin-right: -10px ;
       padding-left:10px ;
       color: white;

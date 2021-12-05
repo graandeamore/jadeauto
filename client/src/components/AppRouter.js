@@ -9,8 +9,6 @@ const AppRouter = () => {
 
     const {user} = useContext(Context) //get context from index.js
 
-    console.log(user)
-
     return (
          <Routes>                                                                   {/*Routes.tag = IF NONE OF PATHS NOT WORKED -> WILL WORK THE LAST SET*/}
             {user.isAuth && authRoutes.map(({path, Component}) =>                  //if authorized generate auth-Routes
