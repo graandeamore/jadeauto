@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import {Context} from "../index";
 import classes from "../scss/NavBar.module.scss";
-import {JADE_ROUTE} from '../utils/consts'
 import logo from '../img/100px.png'
 import {observer} from "mobx-react-lite"; //needs to be optimized
 
@@ -19,7 +18,7 @@ const NavBar = observer(() => {
                             <span>ТЕЛЕФОН:</span>
                             <a href="tel:+79089999929"> +7 (908) 999-99-29</a>
                         </div>
-                    <div className={classes['NavBar-nav__spacer']}></div>
+                                    <div className={classes['NavBar-nav__spacer']}></div>
                              {user.isAuth ?
                                  <div className={classes['NavBar-nav__log']}>
                                      <span>Имя</span>
@@ -30,7 +29,6 @@ const NavBar = observer(() => {
                                      <span>Admin</span>
                                      <span onClick={() => user.setIsAuth(true)}>Вход и регистрация</span>
                                  </div>
-
                              }
                 </div>
        </div>

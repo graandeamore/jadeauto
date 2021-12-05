@@ -2,12 +2,24 @@
 
 @mixin input(){
   outline: none;
-  height: 30px;
-  &:active{
-    border: 1px solid $red;
-  }
+  height: 40px;
+  font-size: $f-min;
+  border-radius: 3px;
+  border: 2px solid white;
+  margin-bottom: 40px ;
+  background-color: #333;
+  display: block;
+  text-indent: 10px;
+  color: #333333;
   &:hover{
-    border: 1px solid $red;
+    box-shadow: 1px 1px 10px $red;
+    border: 2px solid $red;
+    transition: box-shadow,border,margin-left .3s;
+  }
+  &:active, &:focus{
+    color: $grey;
+    box-shadow: 1px 1px 10px $grey;
+    transition: color,box-shadow 0.3s;
   }
 }
 @mixin link(){
@@ -23,3 +35,7 @@
   }
 }
 
+@mixin button(){
+
+
+}

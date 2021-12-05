@@ -7,12 +7,21 @@
   .NavBar-logo {
     display: flex;
     align-items: center;
+    cursor: pointer;
     img{
       width: 100px;
     }
     span{
       font-size: $f-middle;
-      color: #fefefe
+      color: #fefefe;
+      &:hover{
+        color: $red;
+        transition: color 0.3s;
+      }
+      &:active, &:focus{
+        color: $grey;
+        transition: color 0.3s;
+      }
     }
   }
   .NavBar-nav{
@@ -24,8 +33,8 @@
 
       span{
         color: $grey;
-
       }
+
       a{
         color: white;
         text-decoration: none;

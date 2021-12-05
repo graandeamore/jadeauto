@@ -1,0 +1,9 @@
+.ManufacturerBar{
+  color: white;
+}
+.ManufacturerBar__element{
+  cursor: pointer;
+  &.active{
+    color: #CD3319;
+  }
+}
