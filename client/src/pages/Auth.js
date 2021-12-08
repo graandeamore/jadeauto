@@ -14,14 +14,14 @@ const Auth = () => {
                 <h1>{isLogin ? 'Авторизация' : 'Регистрация'}</h1>
                 <div className={classes['Auth__form']}>
                     <form action="">
-                        <span>Телефон</span>
-                        <input placeholder={'+7 (908) 999-99-29'}/>
-                        <span>Пароль</span>
+                        <p>Телефон</p>
+                        <p placeholder={'+7 (908) 999-99-29'}/>
+                        <p>Пароль</p>
                         <input placeholder={'Введите пароль'}/>
                         <button>{isLogin ? 'Войти' : 'Регистрация'}</button>
                     </form>
                 </div>
-                <span>{isLogin ? 'Нет аккаунта?' : 'Есть аккаунт?'}</span>
+                <p>{isLogin ? 'Нет аккаунта?' : 'Есть аккаунт?'}</p>
                 {!isLogin ? <a href={LOGIN_ROUTE}>Войти</a> : <a href={REGISTRATION_ROUTE}>Регистрация</a>}
             </div>
         </Layout>

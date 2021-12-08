@@ -36,7 +36,7 @@ class UserController {
         if (!user) {                                                                      //check user in database by number
             return next(ApiError.internal('Пользователь не найден :( '))                 //doesn't exist ? -> throw internal error
         }
-        let comparePassword = bcrypt.compareSync(password, user.password)   //user exist? -> compare entered password with (decrypted) password in database
+        let comparePassword = bcrypt.compareSync(password, user.password)               //user exist? -> compare entered password with (decrypted) password in database
 
         if (!comparePassword){                                                         //passwords different ? -> throw internal error
             return next(ApiError.internal('Указан неверный пароль :( '))

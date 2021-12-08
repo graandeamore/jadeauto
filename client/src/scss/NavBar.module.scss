@@ -12,7 +12,7 @@
     img{
       width: 100px;
     }
-    span{
+    p{
       font-size: $f-middle;
       color: #fefefe;
       &:hover{
@@ -29,10 +29,11 @@
     display: flex;
     align-items: center;
     .NavBar__nav-phone{
+      display: flex;
       margin-left: -20px ;
       padding-right:10px ;
 
-      span{
+      p{
         color: $grey;
       }
 
@@ -55,15 +56,16 @@
       background-color: $grey;
     }
     .NavBar__nav-log{
-      margin-right: -10px ;
-      padding-left:10px ;
+      display: flex;
+      margin-right: -10px;
+      padding-left: 10px ;
       color: white;
       cursor: pointer;
 
-      span:first-child{
+      p:first-child{
         padding-right:10px ;
       }
-      span:last-child{
+      p:last-child{
         &:hover{
           color: $red;
           transition: color 0.3s;

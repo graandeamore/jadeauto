@@ -1,0 +1,47 @@
+@import 'variables';
+.CarItem-container{
+  margin: 10px 0;
+  height: 150px;
+  cursor: pointer;
+
+  .CarItem{
+    display: flex;
+    align-items: center;
+    border: 1px solid $grey;
+    height: 100%;
+    img {
+      width: 150px;
+      height: 150px;
+    }
+    .CarItem__info{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .CarItem__params,.CarItem__offer{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      p{
+        margin: 5px 0;
+      }
+    }
+    .CarItem__offer{
+      .CarItem__offer-price{
+        font-size: $f-middle;
+      }
+      .CarItem__offer-date{
+        color: $grey;
+        font-size: $f-min;
+      }
+    }
+
+    &:hover{
+      background-color: $h-grey;
+      transition: background-color $time;
+    }
+  }
+}
+

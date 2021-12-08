@@ -9,33 +9,31 @@ const NavBar = observer(() => {
         const {user} = useContext(Context)     //needed just in components that rendered different depended on authorization
         return (
             <Layout>
-                <div className={classes['container']}>
                     <div className={classes.NavBar}>
                         <div className={classes['NavBar__logo']}>
                             <img src={logo} alt=""/>
-                            <span>Jade Auto</span>
+                            <p>Jade Auto</p>
                         </div>
 
                         <div className={classes['NavBar__nav']}>
                             <div className={classes['NavBar__nav-phone']}>
-                                <span>ТЕЛЕФОН:</span>
+                                <p>ТЕЛЕФОН:</p>
                                 <a href="tel:+79089999929"> +7 (908) 999-99-29</a>
                             </div>
                             <div className={classes['NavBar__nav-spacer']}></div>
                             {user.isAuth ?
                                 <div className={classes['NavBar__nav-log']}>
-                                    <span>Имя</span>
-                                    <span>Выход</span>
+                                    <p>Имя</p>
+                                    <p>Выход</p>
                                 </div>
                                 :
                                 <div className={classes['NavBar__nav-log']}>
-                                    <span>Admin</span>
-                                    <span onClick={() => user.setIsAuth(true)}>Вход и регистрация</span>
+                                    <p>Admin</p>
+                                    <p onClick={() => user.setIsAuth(true)}>Вход и регистрация</p>
                                 </div>
                             }
                         </div>
                     </div>
-                </div>
             </Layout>
         );
     }

@@ -1,16 +1,16 @@
 const {CarName} = require('../models/models')          //import name db model by destructuring
 const ApiError = require('../error/ApiError')           //import API errors
 
-class NameController {
+class CarNameController {
     async create(req,res){                                      //create car Name
         const {name} = req.body                                  //extract name of Name from json post request
-        const name = await Name.create({name})                       //async create manufacturer with {name} in db
-        return res.json(Name)                                       //return Name in json
+        const carName = await CarName.create({name})                       //async create manufacturer with {name} in db
+        return res.json(carName)                                       //return Name in json
     }
     async getAll(req,res){                         //get Name
-        const car_names = await Name.findAll()          //find all names
-        return res.json(Name)                              //return all Name in json
+        const carNames = await CarName.findAll()          //find all names
+        return res.json(carNames)                              //return all Names in json
     }
 }
 
-module.exports = new NameController()
+module.exports = new CarNameController()

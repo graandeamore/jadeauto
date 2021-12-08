@@ -9,17 +9,10 @@ const Jade = () => {
     return (
         <Layout>
             <div className={classes.Jade}>
-                <div className={classes.row}>
-                    <div className={classes.col}>
                         <ManufacturerBar/>
                         <NameBar/>
-                    </div>
-
-                    <div className={classes.col}>
                         <CarList/>
-                    </div>
                 </div>
-            </div>
         </Layout>
     );
 };

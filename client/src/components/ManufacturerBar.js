@@ -15,7 +15,7 @@ const ManufacturerBar = observer (() => {
                     <div className={classes['Sort__container-element']}
                          style={manufacturer.id === car.selectedManufacturer.id ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}  //make selected option visible
                          key={car.id}
-                         onClick={() => car.SetSelectedManufacturer(manufacturer)}
+                         onClick={() => car.setSelectedManufacturer(manufacturer)}
                     >
                         {manufacturer.name}
                     </div>

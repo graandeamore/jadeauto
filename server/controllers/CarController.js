@@ -6,7 +6,7 @@ const ApiError = require('../error/ApiError')                 //import API error
 class CarController {
     async create(req,res,next){                                 //create car
         try{
-            let {name, price, carManufacturerId, bodyTypeId, year, engine, drive,mileage, info} = req.body          //request info about car
+            let {price, manufacturerId, nameId, year, motor, drive, mileage, city, date,info} = req.body          //request info about car
 
             const {img} = req.files                                                                 //request image
             let fileName = uuid.v4() + '.jpg'                                                           //generate unique filename
@@ -22,7 +22,7 @@ class CarController {
                         })
                 )
             }
-            const car = await Car.create( {name, price, carManufacturerId, bodyTypeId, year, engine, drive, mileage, img: fileName })       //create car including info
+            const car = await Car.create( {price, manufacturerId, nameId, year, motor , drive, mileage, city, date, img: fileName })       //create car including info
             return res.json(car)                     //return json result
         } catch (e){
             next(ApiError.badRequest(e.message))        //if error trigger badRequest
@@ -30,22 +30,22 @@ class CarController {
     }
 
     async getAll(req, res){                                          //get all and get filtered (by need) by manufacturer, body type
-        let {carManufacturerId, bodyTypeId,limit,page} = req.query
+        let {manufacturerId, nameId,limit,page} = req.query
         page = page || 1
         limit = limit || 9
         let offset = page * limit - limit                                 //skip limit cars on next page
         let cars;
-        if (!carManufacturerId && !bodyTypeId){                                          //get all
-            cars = await Car.findAndCountAll({limit, offset})   //for knowing total cars amount use findAndCountAll() instead of findAll() - for pagination
+        if (!manufacturerId && !nameId){                                          //get all
+            cars = await Car.findAndCountAll({limit, offset})                           //for knowing total cars amount use findAndCountAll() instead of findAll() - for pagination
         }
-        if (carManufacturerId && !bodyTypeId){                                          //filtering by manufacturer
-            cars = await Car.findAndCountAll({where: {carManufacturerId}, limit, offset})
+        if (manufacturerId && !nameId){                                                          //filtering by manufacturer
+            cars = await Car.findAndCountAll({where: {manufacturerId}, limit, offset})
         }
-        if (!carManufacturerId && bodyTypeId){                                          //filtering by body type
-            cars = await Car.findAndCountAll({where: {bodyTypeId}, limit, offset})
+        if (!manufacturerId && nameId){                                          //filtering by car name
+            cars = await Car.findAndCountAll({where: {nameId}, limit, offset})
         }
-        if (carManufacturerId && bodyTypeId){                                           //filtering by body type and manufacturer
-            cars = await Car.findAndCountAll({where: {bodyTypeId,carManufacturerId}, limit, offset})
+        if (manufacturerId && nameId){                                           //filtering by car name and manufacturer
+            cars = await Car.findAndCountAll({where: {nameId,manufacturerId}, limit, offset})
         }
         return res.json(cars)
     }

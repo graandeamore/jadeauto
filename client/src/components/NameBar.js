@@ -10,11 +10,11 @@ const NameBar = observer(() => {
             <div className={classes['Sort__container-title']}>
                 <p>Название:</p>
             </div>
-            <div className={classes['Sort__container-options']}>   {car.cars.map(name =>
+            <div className={classes['Sort__container-options']}>   {car.names.map(name =>
                 <div className={classes['Sort__container-element']}
                      style={name.id === car.selectedName.id ? {borderBottom:"2px solid #CD3319"}: {borderBottom:"none"}}
                      key={name.id}
-                     onClick={()=> car.SetSelectedName(name)}
+                     onClick={()=> car.setSelectedName(name)}
                 >
                     {name.name}
                 </div>
