@@ -18,21 +18,24 @@ const CarsInOrder = sequelize.define('cars_in_order', {
 })
 const Car = sequelize.define('car', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name:                {type: DataTypes.STRING,    allowNull: false},
-    price:               {type: DataTypes.INTEGER,   allowNull: false},
-    carManufacturerId:   {type: DataTypes.INTEGER,   allowNull: false},
-    bodyTypeId:          {type: DataTypes.INTEGER,   allowNull: false},
-    year:                {type: DataTypes.INTEGER,   allowNull: false},
-    engine:              {type: DataTypes.STRING,    allowNull: false},
-    drive:               {type: DataTypes.STRING,    allowNull: false},
-    img:                 {type: DataTypes.STRING,    allowNull: false}
+    price:               {type: DataTypes.INTEGER,   allowNull: false},         // Цена
+    manufacturerId:      {type: DataTypes.INTEGER,   allowNull: false},         // ID Производителя  - сортировка
+    nameId:              {type: DataTypes.INTEGER,   allowNull: false},         // ID Названия       - сортировка
+    year:                {type: DataTypes.INTEGER,   allowNull: false},         // Год
+    motor:               {type: DataTypes.STRING,    allowNull: false},         // Двигатель
+    drive:               {type: DataTypes.STRING,    allowNull: false},         // Привод
+    mileage:             {type: DataTypes.STRING,    allowNull: false},         // Пробег
+    city:                {type: DataTypes.STRING,    allowNull: false},         // Город
+    date:                {type: DataTypes.STRING,    allowNull: false},         // Дата
+    img:                 {type: DataTypes.STRING,    allowNull: false}          // Картинка (должно быть 20/неогр + video)
+
 })
 
-const BodyType = sequelize.define('body_type', {
+const CarName = sequelize.define('car_name', {                                                         //last Bodytype
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name:                {type: DataTypes.STRING,    allowNull: false }
 })
-const CarManufacturer = sequelize.define('car_manufacturer', {
+const Manufacturer = sequelize.define('manufacturer', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name:                {type: DataTypes.STRING,    allowNull: false}
 })
@@ -42,7 +45,7 @@ const CarInfo = sequelize.define('car_info', {
     description:         {type: DataTypes.STRING,    allowNull: false}
 })
 //for belongsToMany
-const BodyTypeManufacturer = sequelize.define('body_type_manufacturer', {
+const CarNameManufacturer = sequelize.define('carname_manufacturer', {                   //last BodyTypeManufacturer
     id:                   {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
 })
 
@@ -63,18 +66,18 @@ Car.hasMany(CarInfo, {as: 'info'})
 CarInfo.belongsTo(Car)
 
 // 5.MANUFACTURER-CAR hasMany
-CarManufacturer.hasMany(Car)
-Car.belongsTo(CarManufacturer)
+Manufacturer.hasMany(Car)
+Car.belongsTo(Manufacturer)
 
-// 6.TYPE-CAR hasMany
-BodyType.hasMany(Car)
-Car.belongsTo(BodyType)
+// 6.Name-CAR hasMany
+CarName.hasMany(Car)
+Car.belongsTo(CarName)
 
-// 6.TYPE-MANUFACTURER belongsToMany
-BodyType.belongsToMany(CarManufacturer,{through: BodyTypeManufacturer}) // many manufacturers can have many body types
-CarManufacturer.belongsToMany(BodyType,{through: BodyTypeManufacturer})    // many body types can have many manufacturers
+// 6.Name-MANUFACTURER belongsToMany
+CarName.belongsToMany(Manufacturer,{through: CarNameManufacturer})            // many manufacturers can have many car-names
+Manufacturer.belongsToMany(CarName,{through: CarNameManufacturer})    // many car-names can have many manufacturers
 
 //export
 module.exports = {
-    User, Order, CarManufacturer, CarsInOrder, Car, CarInfo, BodyType, BodyTypeManufacturer
+    User, Order, Manufacturer, CarsInOrder, Car, CarInfo, CarName, CarNameManufacturer
 }

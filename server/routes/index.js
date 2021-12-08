@@ -1,17 +1,16 @@
 //main router
-const Router = require('express') //import router from express
-const router = new Router()  //create object from express-Router
+const router = require('express').Router()  //create router from express
 
     //import under-routers
 const carRouter = require('./CarRouter')
 const userRouter = require('./UserRouter')
-const carManufacturerRouter = require('./CarManufacturerRouter')
-const bodyTypeRouter = require('./BodyTypeRouter')
+const manufacturerRouter = require('./CarManufacturerRouter')
+const bodyTypeRouter = require('./CarNameRouter')
 
     //under-routers
 router.use('/user', userRouter) // router urls, router
 router.use('/type', bodyTypeRouter)
-router.use('/manufacturer', carManufacturerRouter)
+router.use('/manufacturer', manufacturerRouter)
 router.use('/car', carRouter)
 
 module.exports = router //export router

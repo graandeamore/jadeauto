@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {createContext} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './scss/index.module.scss';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import UserStore from "./store/UserStore";
+import CarStore from "./store/CarStore";
+
+export const Context = createContext(null)
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Context.Provider value={{     //set Context
+      user: new UserStore(),    //create UserStore
+      car: new CarStore()      //create CarStore
+  }}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Context.Provider>,
+  document.getElementById('jadeauto')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

@@ -1,0 +1,29 @@
+@import "variables";
+@import "mixins";
+
+.Auth{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  display: block;
+  text-align: center;
+  max-width: fit-content;
+  h1{
+    font-size: $f-middle;
+  }
+  .Auth__form{
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+  }
+  input{
+    @include input();
+
+  }
+  a{
+    @include link();
+  }
+}

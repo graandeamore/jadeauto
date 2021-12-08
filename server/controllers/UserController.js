@@ -15,13 +15,13 @@ class UserController {
     async registration(req, res, next) {                                //USER REGISTRATION
         const {number, password, role} = req.body                         //get number, password, role from request
         if (!number || !password) {                                         //if empty number and empty password - throw error
-            return next(ApiError.badRequest('Некорректные данные'))
+            return next(ApiError.badRequest('Некорректные данные :( '))
         }
 
         const candidate = await User.findOne({where: {number}})                 //create candidate to authorization by finding his number in db
 
         if (candidate) {                                                        // if number of candidate already exist - > throw error
-            return next(ApiError.badRequest('Этот номер телефона уже зарегестрирован'))
+            return next(ApiError.badRequest('Этот номер телефона уже зарегестрирован :( '))
         }
         const hashPassword = await bcrypt.hash(password, 5)                             //hashing password 5 times
         const user = await User.create({number, role, password: hashPassword})       //CREATE USER in db with number,role & hashed Password
@@ -36,7 +36,7 @@ class UserController {
         if (!user) {                                                                      //check user in database by number
             return next(ApiError.internal('Пользователь не найден :( '))                 //doesn't exist ? -> throw internal error
         }
-        let comparePassword = bcrypt.compareSync(password, user.password)   //user exist? -> compare entered password with (decrypted) password in database
+        let comparePassword = bcrypt.compareSync(password, user.password)               //user exist? -> compare entered password with (decrypted) password in database
 
         if (!comparePassword){                                                         //passwords different ? -> throw internal error
             return next(ApiError.internal('Указан неверный пароль :( '))
