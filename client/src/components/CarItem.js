@@ -1,10 +1,13 @@
 import React from 'react';
 import classes from '../scss/CarItem.module.scss'
+import {useNavigate} from 'react-router-dom';
+import {CAR_ROUTE} from "../utils/consts";
 
 const CarItem = ({car}) => {
+    const navigate = useNavigate();                      //pagination
     return (
-        <div className={classes['CarItem-container']}>
-            <div  className={classes.CarItem}>
+        <div className={classes['CarItem-container']} onClick={() => navigate(CAR_ROUTE + '/' + car.id)}>
+            <div className={classes.CarItem}>
                 <img src={car.img} alt=''/>
                 <div className={classes['CarItem__info']}>
                     <div className={classes['CarItem__params']}>

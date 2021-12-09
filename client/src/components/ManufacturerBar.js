@@ -7,9 +7,11 @@ const ManufacturerBar = observer (() => {
     const {car} = useContext(Context)
     return (                                            // State for all-view
         <div className={classes['ManufacturerBar']}>
+
             <div className={classes['Sort__container-title']}>
                 <p>Производитель:</p>
             </div>
+
             <div className={classes['Sort__container-options']}>
                 {car.manufacturers.map(manufacturer =>
                     <div className={classes['Sort__container-element']}
@@ -21,9 +23,7 @@ const ManufacturerBar = observer (() => {
                     </div>
                 )}
             </div>
-
         </div>
-
     );
 })
 export default ManufacturerBar;

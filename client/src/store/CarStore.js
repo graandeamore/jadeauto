@@ -11,7 +11,7 @@ export default class CarStore {
         this._manufacturers = [
             {id: 1, name: 'Toyota'},
             {id: 2, name: 'Nissan'},
-            {id: 3, name: 'Jeep'},
+            {id: 3, name: 'Jeep'}
         ]
         this._cars = [
             {id: 1,price: 6700402,year: 2012,motor: '450VSd',drive: 'Передний',mileage: 0, city:'Владивосток', date:'12-10-2001', img: '../../../server/static/0a9db193-851f-4216-8a94-cd5ca9777dd2.jpg'},
