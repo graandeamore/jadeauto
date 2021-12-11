@@ -7,7 +7,6 @@ const User = sequelize.define('user', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     number:              {type: DataTypes.STRING, unique: true},
     password:            {type: DataTypes.STRING},
-    email:               {type: DataTypes.STRING, unique: true},
     role:                {type: DataTypes.STRING, defaultValue: 'USER'}
 })
 const Order = sequelize.define('order', {

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState,useContext} from 'react';
 import classes from '../scss/Auth.module.scss'
 import {JADE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from '../utils/consts'
 import Layout from "../utils/Layout";
@@ -7,6 +7,7 @@ import {registration,login} from "../http/userAPI";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 
+
 const Auth = observer(() => {
     const location = useLocation()
     const navigate = useNavigate()
@@ -14,6 +15,7 @@ const Auth = observer(() => {
     const [number, setNumber] = useState('')
     const [password, setPassword] = useState('')
     const {user} = useContext(Context)
+
     const click = async () => {
         try {
             let data
@@ -21,15 +23,16 @@ const Auth = observer(() => {
                 data = await login(number, password);
             } else {
                 data = await registration(number, password);
+                console.log(data)
             }
             user.setUser(user)
             user.setIsAuth(true)
             navigate(JADE_ROUTE)
+
         } catch (e){
             alert(e.response.data.message)
         }
     }
-
     return (
         <Layout>
             <div className={classes.Auth}>
@@ -57,6 +60,7 @@ const Auth = observer(() => {
             </div>
         </Layout>
     );
+
 })
 
 export default Auth;
