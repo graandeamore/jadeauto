@@ -1,0 +1,9 @@
+{
+  "name": "jadeauto",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mobx-react-lite": "^3.2.2",
+    "react-router-dom": "^6.1.1"
+  }
+}

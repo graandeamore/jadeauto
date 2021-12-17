@@ -1,3 +1,10 @@
+@import 'variables';
 .Jade{
  color: white;
+}
+::selection {
+ background: $red /* Safari */
+}
+::-moz-selection {
+ background: $red /* Firefox */
 }

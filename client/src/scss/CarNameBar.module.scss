@@ -1,0 +1,7 @@
+@import "variables";
+@import 'mixins';
+
+.CarNameBar{
+  margin-bottom: 20px;
+  @include sorting()
+}

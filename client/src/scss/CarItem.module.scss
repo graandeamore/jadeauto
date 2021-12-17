@@ -19,22 +19,22 @@
       display: flex;
       justify-content: space-between;
       padding: 0 20px;
-    }
-    .CarItem__params,.CarItem__offer{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      p{
-        margin: 5px 0;
+      .CarItem__params,.CarItem__offer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p{
+          margin: 5px 0;
+        }
       }
-    }
-    .CarItem__offer{
-      .CarItem__offer-price{
-        font-size: $f-middle;
-      }
-      .CarItem__offer-date{
-        color: $grey;
-        font-size: $f-min;
+      .CarItem__offer{
+        .CarItem__offer-price{
+          font-size: $f-middle;
+        }
+        .CarItem__offer-date{
+          color: $grey;
+          font-size: $f-min;
+        }
       }
     }
 

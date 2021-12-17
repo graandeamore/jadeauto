@@ -5,23 +5,23 @@
   height: 40px;
   font-size: $f-min;
   border-radius: 3px;
-  border: 2px solid white;
+  border: 2px solid $grey;
   margin-bottom: 40px;
   background-color: #333;
   display: block;
   text-indent: 10px;
-  color: #333333;
+  color: $grey;
   &:hover{
-    box-shadow: 1px 1px 10px $red;
     border: 2px solid $red;
-    transition: box-shadow,border,margin-left .3s;
+    transition: border .3s;
   }
   &:active, &:focus{
-    color: $grey;
-    box-shadow: 1px 1px 10px $grey;
-    transition: color,box-shadow 0.3s;
+    border: 2px solid white;
+    transition: broder 0.3s;
   }
 }
+
+
 @mixin link(){
   text-decoration: none;
   color: $grey;
@@ -56,7 +56,6 @@
     }
     &:active, &:focus{
       color: white;
-
     }
   }
 }

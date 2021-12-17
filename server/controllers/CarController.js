@@ -6,11 +6,13 @@ const ApiError = require('../error/ApiError')                 //import API error
 class CarController {
     async create(req,res,next){                                 //create car
         try{
-            let {price, manufacturerId, nameId, year, motor, drive, mileage, city, date,info} = req.body          //request info about car
+            let {nameName, manufacturerName, price, manufacturerId, nameId, year, motor, drive, mileage, city, date,info} = req.body          //request info about car
 
             const {img} = req.files                                                                 //request image
             let fileName = uuid.v4() + '.jpg'                                                           //generate unique filename
             img.mv(path.resolve(__dirname,'..', 'static',fileName))                                         //create url and adapt to O
+
+            const car = await Car.create( {nameName, manufacturerName, price,  manufacturerId, nameId, year, motor , drive, mileage, city, date, img: fileName })       //create car including info
 
             if (info){                      //if info (carInfo) consist in query
                 info = JSON.parse(info)         //data from form-data - it comes in String, so parse it (to Front -> JSON, to Back -> JS Objects)
@@ -22,7 +24,7 @@ class CarController {
                         })
                 )
             }
-            const car = await Car.create( {price, manufacturerId, nameId, year, motor , drive, mileage, city, date, img: fileName })       //create car including info
+
             return res.json(car)                     //return json result
         } catch (e){
             next(ApiError.badRequest(e.message))        //if error trigger badRequest
