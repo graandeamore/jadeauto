@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const $host = axios.create({                    //for not auth queries
     baseURL: process.env.REACT_APP_API_URL
 })

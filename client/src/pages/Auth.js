@@ -1,4 +1,4 @@
-import React, {useState,useContext} from 'react';
+import React, {useState,useContext, useEffect} from 'react';
 import classes from '../scss/Auth.module.scss'
 import {JADE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from '../utils/consts'
 import Layout from "../utils/Layout";
@@ -16,23 +16,28 @@ const Auth = observer(() => {
     const [password, setPassword] = useState('')
     const {user} = useContext(Context)
 
+    useEffect( () => { //navigate to homepage after login
+        if (user.isAuth) {
+            navigate(JADE_ROUTE)
+        }
+    }, [])
+
     const click = async () => {
         try {
             let data
             if (isLogin) {
-                data = await login(number, password);
-            } else {
-                data = await registration(number, password);
-                console.log(data)
-            }
-            user.setUser(user)
-            user.setIsAuth(true)
-            navigate(JADE_ROUTE)
+                    data = await login(number, password);
+                } else {
+                    data = await registration(number, password);
+                }
+                user.setUser(true)
+                user.setIsAuth(true)
 
         } catch (e){
             alert(e.response.data.message)
         }
     }
+
     return (
         <Layout>
             <div className={classes.Auth}>
@@ -59,6 +64,7 @@ const Auth = observer(() => {
                 {!isLogin ? <a href={LOGIN_ROUTE}>Войти</a> : <a href={REGISTRATION_ROUTE}>Регистрация</a>}
             </div>
         </Layout>
+
     );
 
 })

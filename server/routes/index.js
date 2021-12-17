@@ -9,7 +9,7 @@ const carNameRouter = require('./CarNameRouter')
 
     //under-routers
 router.use('/user', userRouter) // router urls, router
-router.use('/name', carNameRouter)
+router.use('/carname', carNameRouter)
 router.use('/manufacturer', manufacturerRouter)
 router.use('/car', carRouter)
 

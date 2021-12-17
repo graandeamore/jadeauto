@@ -1,32 +1,32 @@
+import React, {useContext, useEffect, useState} from 'react';
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
 import {observer} from "mobx-react-lite";
+import {Context} from "./index";
 import {check} from "./http/userAPI";
-import {useContext, useState,useEffect} from "react";
-import {Context} from './index'
-import gif from './e8nZC.gif'
-
+import gif from './graphics/e8nZC.gif'
 const App = observer(() => {
-
     const {user} = useContext(Context)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)  // (is loading?) default -> loading (adding gif), check isAuth ? -> false
 
-    useEffect(()=> {
-        check().then( data => {
-            user.setUser(true)
-            user.setIsAuth(true)
-        }).finally(() => setLoading(false))
-    }, [])
+    useEffect(() => {                               //send 1 time while app's opening
+        check().then(data => {                              //if check successful ->
+            user.setUser(true)                               //user -> true
+            user.setIsAuth(true)                              //authorization -> true
+        }).finally(() => setLoading(false))                     //setLoading false anyway
+    })                                                 // dependencies, if null -> function will run only 1 time
 
 
-    if (loading){
-        return <img src={gif} alt="s0" width="250px"/>
+    if (loading) {                                      //if loading -> loader
+        return <img src={gif} alt=""/>
     }
+
     return (
         <BrowserRouter> {/* for pagination working App needs to be wrapped in BrowserRouter tag */}
             <NavBar/>
             <AppRouter/>
+
         </BrowserRouter>
     );
 
