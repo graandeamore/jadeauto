@@ -25,7 +25,6 @@ export default class CarStore {
         this._cars = cars
     }
 
-
     setSelectedManufacturer(manufacturer){
         this.setPage(1)
         this._selectedManufacturer = manufacturer

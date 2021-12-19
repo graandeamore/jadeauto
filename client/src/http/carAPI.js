@@ -1,5 +1,4 @@
 import {$authHost, $host} from "./index";
-import jwt_decode from "jwt-decode";
 
 export const createManufacturer = async (manufacturer) => {
     const {data} = await $authHost.post('api/manufacturer', manufacturer)
@@ -17,7 +16,7 @@ export const createCarName = async (CarName) => {
 }
 
 export const fetchCarNames = async () => {
-    const {data} = await $host.get('api/carname', )
+    const {data} = await $host.get('api/carname')
     return data
 }
 
@@ -26,9 +25,9 @@ export const createCar = async (car) => {
     return data
 }
 
-export const fetchCars = async (manufacturerId, nameId, page, limit= 5) => {
+export const fetchCars = async (manufacturerId, carNameId, page, limit= 5) => {
     const {data} = await $host.get('api/car', {params: {
-            manufacturerId, nameId, page, limit
+            manufacturerId, carNameId, page, limit
         }})
     return data
 }

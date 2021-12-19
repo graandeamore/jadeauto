@@ -20,19 +20,20 @@ const Auth = observer(() => {
         if (user.isAuth) {
             navigate(JADE_ROUTE)
         }
-    }, [])
+    },[])
+
 
     const click = async () => {
         try {
             let data
             if (isLogin) {
-                    data = await login(number, password);
-                } else {
-                    data = await registration(number, password);
-                }
-                user.setUser(true)
-                user.setIsAuth(true)
-
+                data = await login(number, password);
+            } else {
+                data = await registration(number, password)
+            }
+            user.setUser(user)
+            user.setIsAuth(true)
+            navigate(JADE_ROUTE)
         } catch (e){
             alert(e.response.data.message)
         }
@@ -41,27 +42,29 @@ const Auth = observer(() => {
     return (
         <Layout>
             <div className={classes.Auth}>
-                <h1>{isLogin ? 'Авторизация' : 'Регистрация'}</h1>
-                <div className={classes['Auth__form']}>
-                    <form action="">
-                        <p>Телефон</p>
-                        <input
-                            type='text'
-                            placeholder={'+7 (908) 999-99-29'}
-                            value={number}
-                            onChange={e => setNumber(e.target.value)}
-                        />
-                        <p>Пароль</p>
-                        <input
-                            type='password'
-                            placeholder={'Введите пароль'}
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}/>
-                        <button onClick={click} >{isLogin ? 'Войти' : 'Регистрация'}</button>
-                    </form>
+                <div className={classes['Auth__page']}>
+                    <h1>{isLogin ? 'Авторизация' : 'Регистрация'}</h1>
+                    <div className={classes['Auth__form']}>
+                        <form action="">
+                            <p>Телефон</p>
+                            <input
+                                type='text'
+                                placeholder={'+7 (908) 999-99-29'}
+                                value={number}
+                                onChange={e => setNumber(e.target.value)}
+                            />
+                            <p>Пароль</p>
+                            <input
+                                type='password'
+                                placeholder={'Введите пароль'}
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}/>
+                            <button onClick={click} >{isLogin ? 'Войти' : 'Регистрация'}</button>
+                        </form>
+                    </div>
+                    <p>{isLogin ? 'Нет аккаунта?' : 'Есть аккаунт?'}</p>
+                    {!isLogin ? <a href={LOGIN_ROUTE}>Войти</a> : <a href={REGISTRATION_ROUTE}>Регистрация</a>}
                 </div>
-                <p>{isLogin ? 'Нет аккаунта?' : 'Есть аккаунт?'}</p>
-                {!isLogin ? <a href={LOGIN_ROUTE}>Войти</a> : <a href={REGISTRATION_ROUTE}>Регистрация</a>}
             </div>
         </Layout>
 

@@ -12,7 +12,7 @@ const CarList = observer(() => {
             <div className={classes.CarList}>
                 {car.cars.map(car =>
                     <CarItem
-                        key={car.id}
+                        key={car.id}                //check for problems
                         car={car}
                     />
                 )}

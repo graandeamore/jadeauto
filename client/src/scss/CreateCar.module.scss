@@ -26,6 +26,9 @@
   width: 500px;
   transform: scale(0.5);
   transition: 0.4s all;
+  .select{
+    cursor: pointer;
+  }
 
   &.visible{
     transform: scale(1);

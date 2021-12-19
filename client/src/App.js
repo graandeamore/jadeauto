@@ -15,7 +15,7 @@ const App = observer(() => {
             user.setUser(true)                               //user -> true
             user.setIsAuth(true)                              //authorization -> true
         }).finally(() => setLoading(false))                     //setLoading false anyway
-    })                                                 // dependencies, if null -> function will run only 1 time
+    },[])                                                 // dependencies, if null -> function will run only 1 time
 
 
     if (loading) {                                      //if loading -> loader
@@ -26,7 +26,6 @@ const App = observer(() => {
         <BrowserRouter> {/* for pagination working App needs to be wrapped in BrowserRouter tag */}
             <NavBar/>
             <AppRouter/>
-
         </BrowserRouter>
     );
 

@@ -1,10 +1,19 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import classes from "../scss/ManufacturerBar.module.scss";
 import Layout from '../utils/Layout'
 const ManufacturerBar = observer (() => {
     const {car} = useContext(Context)
+
+    useEffect(() => {
+        car.setSelectedManufacturer("all");
+    },[])
+
+    const getAllCars= () => {
+        car.setSelectedManufacturer("all");
+    }
+
     return (                                            // State for all-view
         <Layout>
             <div className={classes['ManufacturerBar']}>
@@ -13,6 +22,14 @@ const ManufacturerBar = observer (() => {
                 </div>
 
                 <div className={classes['Sort__container-options']}>
+                    <div
+                        className={classes['Sort__container-element']}
+                        style={'all'=== car.selectedManufacturer ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}
+                        onClick={getAllCars}
+                    >
+                        Все
+                    </div>
+
                     {car.manufacturers.map(manufacturer =>
                         <div className={classes['Sort__container-element']}
                              style={manufacturer.id === car.selectedManufacturer.id ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}  //make selected option visible

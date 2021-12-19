@@ -17,18 +17,29 @@ const CarsInOrder = sequelize.define('cars_in_order', {
 })
 const Car = sequelize.define('car', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    nameName:            {type: DataTypes.STRING,    allowNull: false},         //название
-    manufacturerName:    {type: DataTypes.STRING,    allowNull: false},         //производитель
-    price:               {type: DataTypes.STRING,   allowNull: false},         // Цена
-    manufacturerId:      {type: DataTypes.INTEGER,   allowNull: false},         // ID Производителя  - сортировка
-    carNameId:           {type: DataTypes.INTEGER,   allowNull: false},         // ID Названия       - сортировка
-    year:                {type: DataTypes.INTEGER,   allowNull: false},         // Год
-    motor:               {type: DataTypes.STRING,    allowNull: false},         // Двигатель
-    drive:               {type: DataTypes.STRING,    allowNull: false},         // Привод
-    mileage:             {type: DataTypes.INTEGER,    allowNull: false},         // Пробег
-    city:                {type: DataTypes.STRING,    allowNull: false},         // Город
-    date:                {type: DataTypes.STRING,    allowNull: false},         // Дата
-    img:                 {type: DataTypes.STRING,    allowNull: false}          // Картинка (должно быть 20/неогр + video)
+    nameName:            {type: DataTypes.STRING,    },         //название
+    manufacturerName:    {type: DataTypes.STRING,    },         //производитель
+    price:               {type: DataTypes.STRING,    },         // Цена
+    manufacturerId:      {type: DataTypes.INTEGER,   },         // ID Производителя  - сортировка
+    carNameId:           {type: DataTypes.INTEGER,   },         // ID Названия       - сортировка
+    year:                {type: DataTypes.INTEGER,   },         // Год
+    motor:               {type: DataTypes.STRING,    },         // Двигатель
+    drive:               {type: DataTypes.STRING,    },         // Привод
+    mileage:             {type: DataTypes.INTEGER,   },          // Пробег
+    city:                {type: DataTypes.STRING,    },          // Город
+    date:                {type: DataTypes.STRING,    },          // Дата
+    description:         {type: DataTypes.STRING,    },          // Описание
+    img:                 {type: DataTypes.STRING,    },          // Картинка 1
+    img1:                {type: DataTypes.STRING,    },          // Картинка 2
+    img2:                {type: DataTypes.STRING,    },          // Картинка 3
+    img3:                {type: DataTypes.STRING,    },          // Картинка 4
+    img4:                {type: DataTypes.STRING,    },          // Картинка 5
+    img5:                {type: DataTypes.STRING,    },          // Картинка 6
+    img6:                {type: DataTypes.STRING,    },          // Картинка 7
+    img7:                {type: DataTypes.STRING,    },          // Картинка 8
+    img8:                {type: DataTypes.STRING,    },          // Картинка 9
+
+
 
 })
 

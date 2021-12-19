@@ -2,15 +2,16 @@
 @import "mixins";
 
 .Auth{
-  color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
-  border: 1px solid white;
-  border-radius: 10px;
-  display: block;
-  text-align: center;
-  max-width: fit-content;
+  .Auth__page{
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    display: block;
+    text-align: center;
+    max-width: fit-content;
+  }
   h1{
     font-size: $f-middle;
   }
