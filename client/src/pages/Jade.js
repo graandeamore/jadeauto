@@ -9,27 +9,34 @@ import {Context} from '../index'
 import {useContext, useEffect} from 'react'
 import {fetchManufacturers,fetchCarNames, fetchCars} from '../http/carAPI'
 import FrontPage from '../components/FrontPage'
+import Pages from '../components/Pages'
 const Jade = observer(() => {
     const {car} = useContext(Context)
 
     useEffect(() => {
         fetchManufacturers().then(data => car.setManufacturers(data))
         fetchCarNames().then(data => car.setCarNames(data))
-        fetchCars(null,null,1,2).then(data => {
+        fetchCars(null, null, 1, car.limit).then(data => {
             car.setCars(data.rows)
             car.setTotalCount(data.count)
         })
-    })
+    },[])
 
-
+    useEffect(() => {
+        fetchCars(car.selectedManufacturer.id, car.selectedCarName.id, car.page, car.limit).then(data => {
+            car.setCars(data.rows)
+            car.setTotalCount(data.count)
+        })
+    }, [car.page, car.selectedManufacturer, car.selectedCarName])
 
     return (
-            <div className={classes.Jade}>
-                        <FrontPage/>
-                        <ManufacturerBar/>
-                        <CarNameBar/>
-                        <CarList/>
-                </div>
+        <div className={classes.Jade}>
+            <FrontPage/>
+            <ManufacturerBar/>
+            <CarNameBar/>
+            <CarList/>
+            <Pages/>
+        </div>
 
     );
 })

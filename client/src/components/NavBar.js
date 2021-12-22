@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Context} from "../index";
 import classes from "../scss/NavBar.module.scss";
 import logo from '../img/100px.png'
@@ -18,8 +18,6 @@ const NavBar = observer(() => {
             localStorage.removeItem('token')
         }
 
-
-
         return (
             <Layout>
                     <div className={classes.NavBar}>
@@ -36,15 +34,15 @@ const NavBar = observer(() => {
                             <div className={classes['NavBar__nav-spacer']}></div>
                             {user.isAuth ?
                                 <div className={classes['NavBar__nav-log']}>
-                                    <p onClick={() => navigate(ADMIN_ROUTE)}>Имя</p>
+                                    <p onClick={() => navigate(ADMIN_ROUTE)}>Admin</p>
                                     <p onClick={() => logOut()} >Выход</p>
                                 </div>
                                 :
                                 <div className={classes['NavBar__nav-log']}>
-                                    <p onClick={() => navigate(ADMIN_ROUTE)}>Admin</p>
                                     <p onClick={() => navigate(LOGIN_ROUTE)}>Вход и регистрация</p>
                                 </div>
                             }
+
                         </div>
                     </div>
             </Layout>

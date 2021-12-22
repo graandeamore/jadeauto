@@ -7,7 +7,7 @@ export default class UserStore {
         this._isAuth = false           //"_" means unchangeable
         this._user= {}
         makeAutoObservable(this)        //with changing _isAuth & _user components will rerender
-        this.checkValidToken = this.checkValidToken.bind(this);
+        this.checkValidToken = this.checkValidToken.bind(this)
     }
 
     checkValidToken() {
@@ -30,7 +30,6 @@ export default class UserStore {
     setUser(user){
         this._user = user
     }
-
             //COMPUTED FUNCTIONS - only called if internal variables have changed
     get isAuth(){               //get variables from state
         return this._isAuth
@@ -38,4 +37,5 @@ export default class UserStore {
     get user(){
         return this._user
     }
+
 }

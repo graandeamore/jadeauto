@@ -1,45 +1,90 @@
 @import 'variables';
 .CarPage{
-  border: 1px solid cyan;
   color: white;
   margin-top: 50px;
   display: flex;
-  align-items: center;
+  justify-content: space-around;
   .CarPage__visual{
-    border: 1px solid green;
-    width: 700px;
     .CarPage__title{
       font-size: $f-huge;
       font-weight: normal;
       margin-bottom: 20px;
     }
-    .CarPage__visual-main{
-      height: 100%;
-      img{
-        width: 600px ;
+    .CarPage__visual-images{
+      width: content-box;
+      .CarPage__visual-images-main{
+        width: 600px;
+        height: 600px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border: 3px solid $grey;
+        background-position: 50%,50%;
+        .CarPage__visual-images-main-video{
+          width: 594px !important;
+          height: 594px !important;
+        }
       }
-    }
-    .CarPage__visual-extends{
-      border: 1px solid green;
-      width: 700px;
-      display: flex;
-      flex-wrap: wrap;
-      img{
-        width: 200px;
+      .CarPage__visual-images-extends{
+        width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        .CarPage__visual-images-extends-item{
+          width: 150px;
+          height: 150px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          cursor: pointer;
+          &:hover{
+            border: 3px solid $red !important;
+          }
+          .CarPage__visual-images-extends-item-video{
+            width: 144px !important;
+            height: 144px !important;
+
+          }
+        }
       }
     }
   }
   .CarPage__info{
-    border: 1px solid red;
-    height: 500px;
+    font-size: $f-middle;
+    width: 600px;
     .CarPage__info-price{
-      font-size: 36px;
-      white-spacing: 1px;
+      text-align: right;
+      margin-bottom: 80px;
+      font-size: $f-huge;
     }
     .CarPage__info-details{
+      .CarPage__info-details-item{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px ;
+        .CarItem__params-details-item-def{
+          color: $grey;
+        }
+      }
+    }
+    .CarPage__info-details-button{
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      margin-top: 60px;
+      width: 600px;
+      line-height: 30px;
+      background-color: $red;
+      border-radius: 3px;
+      justify-content: center;
+      letter-spacing: 2px;
+      box-shadow: 1px 1px 2px $grey;
+      cursor: pointer;
+      &:hover{
+        margin-top: 62px;
+        box-shadow: 1px 1px 2px $red;
+        transition: margin-top .1s;
+      }
+      &:active, &:focus{
+        background-color: $grey;
+        transition: background-color .1s;
+        box-shadow: none;
+      }
     }
   }
 }

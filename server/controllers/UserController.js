@@ -25,7 +25,7 @@ class UserController {
         }
 
         const hashPassword = await bcrypt.hash(password, 5)                             //hashing password 5 times
-        const user = await User.create({number, role, password: hashPassword})       //CREATE USER in db with number,role & hashed Password
+        const user = await User.create({number, role: 'User', password: hashPassword})       //CREATE USER in db with number,role & hashed Password
         const order = await Order.create({userId: user.id})                         //CREATE ORDER FROM REGISTERED USER with user id
         const token = generateJWT(user.id, user.number, user.role)                       //generate token with user id, number & role
         return res.json({token})                                                        //return JWT to client

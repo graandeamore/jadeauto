@@ -7,46 +7,49 @@ const User = sequelize.define('user', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     number:              {type: DataTypes.STRING, allowNull: false },  //need to set , unique: true
     password:            {type: DataTypes.STRING, allowNull: false},
-    role:                {type: DataTypes.STRING, defaultValue: 'ADMIN'}  //need to set , unique: true defaultValue: 'USER'
+    role:                {type: DataTypes.STRING, defaultValue: 'USER'}  //need to set , unique: true defaultValue: 'USER'
 })
+
 const Order = sequelize.define('order', {
-    id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
+    id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}               //in future make from it to show car delivery info
 })
+
 const CarsInOrder = sequelize.define('cars_in_order', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
 })
-const Car = sequelize.define('car', {
-    id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    nameName:            {type: DataTypes.STRING,    allowNull: false},         //название
-    manufacturerName:    {type: DataTypes.STRING,    allowNull: false},         //производитель
-    price:               {type: DataTypes.STRING,   allowNull: false},         // Цена
-    manufacturerId:      {type: DataTypes.INTEGER,   allowNull: false},         // ID Производителя  - сортировка
-    carNameId:           {type: DataTypes.INTEGER,   allowNull: false},         // ID Названия       - сортировка
-    year:                {type: DataTypes.INTEGER,   allowNull: false},         // Год
-    motor:               {type: DataTypes.STRING,    allowNull: false},         // Двигатель
-    drive:               {type: DataTypes.STRING,    allowNull: false},         // Привод
-    mileage:             {type: DataTypes.INTEGER,    allowNull: false},         // Пробег
-    city:                {type: DataTypes.STRING,    allowNull: false},         // Город
-    date:                {type: DataTypes.STRING,    allowNull: false},         // Дата
-    img:                 {type: DataTypes.STRING,    allowNull: false}          // Картинка (должно быть 20/неогр + video)
 
+const Car = sequelize.define('car', {
+    id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},      //add allownull-false
+    nameName:            {type: DataTypes.STRING,    allowNull: false  },         //название
+    manufacturerName:    {type: DataTypes.STRING,    allowNull: false },         //производитель
+    price:               {type: DataTypes.STRING,    allowNull: false },         // Цена
+    manufacturerId:      {type: DataTypes.INTEGER,   allowNull: false },         // ID Производителя  - сортировка
+    carNameId:           {type: DataTypes.INTEGER,   allowNull: false },         // ID Названия       - сортировка
+    year:                {type: DataTypes.INTEGER,   allowNull: false},         // Год
+    motor:               {type: DataTypes.STRING,    allowNull: false },         // Двигатель
+    drive:               {type: DataTypes.STRING,    allowNull: false },         // Привод
+    mileage:             {type: DataTypes.INTEGER,   allowNull: false },          // Пробег
+    city:                {type: DataTypes.STRING,    allowNull: false  },          // Город
+    date:                {type: DataTypes.STRING,    allowNull: false },          // Дата
+    description:         {type: DataTypes.STRING,    allowNull: false },          // Описание
+    video:               {type: DataTypes.STRING,    allowNull: false },           // Видео
 })
 
-const CarName = sequelize.define('car_name', {                                                         //last Bodytype
+const CarName = sequelize.define('car_name', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name:                {type: DataTypes.STRING,    allowNull: false }
 })
+
 const Manufacturer = sequelize.define('manufacturer', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name:                {type: DataTypes.STRING,    allowNull: false}
 })
-const CarInfo = sequelize.define('car_info', {
+const CarImages = sequelize.define('car_images', {
     id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    title:               {type: DataTypes.STRING,    allowNull: false},
-    description:         {type: DataTypes.STRING,    allowNull: false}
+    img:                 {type: DataTypes.STRING,    allowNull: false}
 })
 //for belongsToMany
-const CarNameManufacturer = sequelize.define('car_name_manufacturer', {                   //last BodyTypeManufacturer
+const CarNameManufacturer = sequelize.define('car_name_manufacturer', {
     id:                   {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
 })
 
@@ -63,8 +66,8 @@ Car.hasMany(CarsInOrder)
 CarsInOrder.belongsTo(Car)
 
 //4.ORDER_CAR-CAR hasOne
-Car.hasMany(CarInfo, {as: 'info'})
-CarInfo.belongsTo(Car)
+Car.hasMany(CarImages, {as: 'images'})
+CarImages.belongsTo(Car)
 
 // 5.MANUFACTURER-CAR hasMany
 Manufacturer.hasMany(Car)
@@ -80,5 +83,5 @@ Manufacturer.belongsToMany(CarName,{through: CarNameManufacturer})    // many ca
 
 //export
 module.exports = {
-    User, Order, Manufacturer, CarsInOrder, Car, CarInfo, CarName, CarNameManufacturer
+    User, Order, Manufacturer, CarsInOrder, Car, CarImages, CarName, CarNameManufacturer
 }

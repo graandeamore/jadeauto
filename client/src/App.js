@@ -5,7 +5,9 @@ import NavBar from "./components/NavBar";
 import {observer} from "mobx-react-lite";
 import {Context} from "./index";
 import {check} from "./http/userAPI";
-import gif from './graphics/e8nZC.gif'
+import gif from './graphics/loader.gif'
+import classes from './scss/Jade.module.scss'
+
 const App = observer(() => {
     const {user} = useContext(Context)
     const [loading, setLoading] = useState(true)  // (is loading?) default -> loading (adding gif), check isAuth ? -> false
@@ -15,18 +17,17 @@ const App = observer(() => {
             user.setUser(true)                               //user -> true
             user.setIsAuth(true)                              //authorization -> true
         }).finally(() => setLoading(false))                     //setLoading false anyway
-    })                                                 // dependencies, if null -> function will run only 1 time
+    },[])                                                 // dependencies, if null -> function will run only 1 time
 
 
     if (loading) {                                      //if loading -> loader
-        return <img src={gif} alt=""/>
+        return <div className={classes.loader}><img src={gif} alt=""/> </div>
     }
 
     return (
         <BrowserRouter> {/* for pagination working App needs to be wrapped in BrowserRouter tag */}
             <NavBar/>
             <AppRouter/>
-
         </BrowserRouter>
     );
 
