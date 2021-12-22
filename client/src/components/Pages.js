@@ -9,7 +9,7 @@ const Pages = observer(() => {
     const pageCount = Math.ceil(car.totalCount / car.limit)
     const pages = []
 
-    for (let i = 0; i <= pageCount; i++){
+    for (let i = 0; i < pageCount; i++){
         pages.push(i + 1)
     }
 

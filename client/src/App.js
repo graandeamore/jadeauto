@@ -5,7 +5,9 @@ import NavBar from "./components/NavBar";
 import {observer} from "mobx-react-lite";
 import {Context} from "./index";
 import {check} from "./http/userAPI";
-import gif from './graphics/e8nZC.gif'
+import gif from './graphics/loader.gif'
+import classes from './scss/Jade.module.scss'
+
 const App = observer(() => {
     const {user} = useContext(Context)
     const [loading, setLoading] = useState(true)  // (is loading?) default -> loading (adding gif), check isAuth ? -> false
@@ -19,7 +21,7 @@ const App = observer(() => {
 
 
     if (loading) {                                      //if loading -> loader
-        return <img src={gif} alt=""/>
+        return <div className={classes.loader}><img src={gif} alt=""/> </div>
     }
 
     return (

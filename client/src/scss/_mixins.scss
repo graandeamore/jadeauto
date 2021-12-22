@@ -1,16 +1,15 @@
 @import "src/scss/variables";
-
 @mixin input(){
   outline: none;
-  height: 40px;
   font-size: $f-min;
   border-radius: 3px;
   border: 2px solid $grey;
-  margin-bottom: 40px;
   background-color: #333;
-  display: block;
+  margin: 0 auto;
   text-indent: 10px;
   color: $grey;
+  margin-bottom: 10px;
+  line-height: $f-middle;
   &:hover{
     border: 2px solid $red;
     transition: border .3s;
@@ -21,20 +20,40 @@
   }
 }
 
-
 @mixin link(){
   text-decoration: none;
   color: $grey;
+  cursor: pointer;
   &:hover{
     color: $red;
     transition: color 0.3s;
   }
   &:active, &:focus{
-    color: $grey;
+    color: white;
     transition: color 0.3s;
   }
 }
 @mixin button(){
+  color: white;
+  font-size: $f-min;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  width: 260px;
+  margin-top: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  background-color: $grey;
+  margin-top: 10px;
+  &:hover{
+    background-color: $red;
+    transition:  background-color  .1s;
+  }
+  &:focus, &:active{
+    color: #000;
+    background-color: white;
+    transition:  background-color  .1s;
+  }
 }
 @mixin sorting(){
   .Sort__container-title{

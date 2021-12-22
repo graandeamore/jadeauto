@@ -24,14 +24,14 @@ const Admin = observer(() => {
     useEffect(() => {
         fetchManufacturers().then(data => car.setManufacturers(data))
         fetchCarNames().then(data => car.setCarNames(data))
-        fetchCars(null,null,1,3).then(data => {
+        fetchCars(null,null,1, car.limit).then(data => {
             car.setCars(data.rows)
             car.setTotalCount(data.count)
         })
     },[])
 
     useEffect(() => {
-        fetchCars(car.selectedManufacturer.id,car.selectedCarName.id,car.page,2).then(data => {
+        fetchCars(car.selectedManufacturer.id,car.selectedCarName.id,car.page,  car.limit).then(data => {
             car.setCars(data.rows)
             car.setTotalCount(data.count)
         })
@@ -41,11 +41,17 @@ const Admin = observer(() => {
     return (
         <Layout>
             <div className={classes['Admin']}>
-                <div className={classes['Admin-panel']}>
+                <div className={classes['Admin__panel']}>
                     <p>Панель администратора</p>
-                    <div onClick={()=> setManufacturerVisible(true)}>Добавить производителя</div>
-                    <div onClick={()=> setCarNameVisible(true)}>Добавить наименование</div>
-                    <div onClick={()=> setCarVisible(true)}>Добавить машину</div>
+                    <div
+                        className={classes['Admin__panel-button']}
+                        onClick={()=> setManufacturerVisible(true)}>Добавить производителя</div>
+                    <div
+                        className={classes['Admin__panel-button']}
+                        onClick={()=> setCarNameVisible(true)}>Добавить наименование</div>
+                    <div
+                        className={classes['Admin__panel-button']}
+                        onClick={()=> setCarVisible(true)}>Добавить машину</div>
                 </div>
                 <CreateManufacturer
                     visible={ManufacturerVisible}

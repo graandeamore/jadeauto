@@ -30,10 +30,10 @@ const ManufacturerBar = observer (() => {
                         Все
                     </div>
 
-                    {car.manufacturers.map(manufacturer =>
+                    {car.manufacturers.map((manufacturer,index) =>
                         <div className={classes['Sort__container-element']}
                              style={manufacturer.id === car.selectedManufacturer.id ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}  //make selected option visible
-                             key={car.id}
+                             key={index}
                              onClick={() => car.setSelectedManufacturer(manufacturer)}
                         >
                             {manufacturer.name}

@@ -13,16 +13,35 @@
     .CarPage__visual-images{
       width: content-box;
       .CarPage__visual-images-main{
-        img{
-          width: 600px;
+        width: 600px;
+        height: 600px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border: 3px solid $grey;
+        background-position: 50%,50%;
+        .CarPage__visual-images-main-video{
+          width: 594px !important;
+          height: 594px !important;
         }
       }
       .CarPage__visual-images-extends{
         width: 600px;
         display: flex;
         flex-wrap: wrap;
-        img{
+        .CarPage__visual-images-extends-item{
           width: 150px;
+          height: 150px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          cursor: pointer;
+          &:hover{
+            border: 3px solid $red !important;
+          }
+          .CarPage__visual-images-extends-item-video{
+            width: 144px !important;
+            height: 144px !important;
+
+          }
         }
       }
     }

@@ -10,7 +10,7 @@ export default class CarStore {
         this._selectedCarName = {}
         this._page = 1
         this._totalCount = 0
-        this._limit = 3
+        this._limit = 10
         makeAutoObservable(this)        //with changing _isAuth & _user components will rerender
     }
 
@@ -41,6 +41,7 @@ export default class CarStore {
         this._totalCount = count
     }
 
+
     //COMPUTED FUNCTIONS - only called if internal variables have changed   //GETTERS
     get carNames (){               //get variables from state
         return this._carNames
@@ -66,4 +67,5 @@ export default class CarStore {
     get limit(){
         return this._limit
     }
+
 }

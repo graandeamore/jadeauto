@@ -1,8 +1,9 @@
 @import 'variables';
+@import "mixins";
 .Admin{
   font-size: inherit;
 }
-.Admin-panel{
+.Admin__panel{
   display: flex;
   flex-direction: column;
   color: white;
@@ -15,15 +16,7 @@
     border-bottom: 4px solid $red;
 
   }
-  div{
-    cursor: pointer;
-    width: 320px;
-    margin-top: 20px;
-    text-align: center;
-    background-color: $grey;
-    &:hover{
-      background-color: $red;
-      transition:  background-color  .1s;
-    }
+  .Admin__panel-button{
+   @include button();
   }
 }

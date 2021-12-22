@@ -7,16 +7,29 @@ const cors = require('cors')                            //import for queries fro
 const router = require('./routes/index')                //import main router
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')    //import middleWare
 const path = require('path')                            //import path for url
-
 const PORT = process.env.PORT || 5000                   // port from .env and 5000 by default
-
+const twilio = require('twilio');
+const client = new twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 const app = express()                                   //create object by call function express() (running our app)
 
 app.use(cors())                                             //use  queries from browser
 app.use(express.json())                                      //use parse json
 app.use(express.static(path.resolve(__dirname,'static')))     //for usage files from static folder
 app.use(fileUpload({}))                                //use file uploads with empty settings objet
-app.use('/api', router)                                        //use main router
+app.use('/api', router)//use main router
+
+app.get('/send-text', (req,res) => {
+    //get variables
+        const {buyer, textmessage, car} = req.query
+        const formatted = car +'\n'+ textmessage  +'\n'+ 'Покупатель: '+ buyer
+        //send mes
+        client.messages.create({
+            body: formatted,
+            from: 'whatsapp:+14155238886',
+            to: 'whatsapp:+79532084008'
+        }).then(message => console.log(formatted))
+
+})
 
 app.use(errorHandler)       //Strict usage in very end
 
@@ -29,5 +42,6 @@ const start = async () => {             //All queries to DataBase - async. Creat
         console.log(e)
     }
 }
+
 
 start()                 //run app

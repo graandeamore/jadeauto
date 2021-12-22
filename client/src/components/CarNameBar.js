@@ -29,10 +29,10 @@ const CarNameBar = observer(() => {
                     >
                         Все
                     </div>
-                    {car.carNames.map(carName =>
+                    {car.carNames.map((carName,index) =>
                         <div className={classes['Sort__container-element']}
                              style={carName.id === car.selectedCarName.id ? {borderBottom:"2px solid #CD3319"}: {borderBottom:"none"}}
-                             key={carName.id}
+                             key={index}
                              onClick={()=> car.setSelectedCarName(carName)}
                         >
                             {carName.name}
