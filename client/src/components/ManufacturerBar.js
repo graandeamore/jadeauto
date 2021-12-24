@@ -1,29 +1,48 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import classes from "../scss/ManufacturerBar.module.scss";
-
+import Layout from '../utils/Layout'
 const ManufacturerBar = observer (() => {
     const {car} = useContext(Context)
+
+    useEffect(() => {
+        car.setSelectedManufacturer("all");
+    },[])
+
+    const getAllCars= () => {
+        car.setSelectedManufacturer("all");
+    }
+
     return (                                            // State for all-view
-        <div className={classes['ManufacturerBar']}>
+        <Layout>
+            <div className={classes['ManufacturerBar']}>
+                <div className={classes['Sort__container-title']}>
+                    <p>Производитель:</p>
+                </div>
 
-            <div className={classes['Sort__container-title']}>
-                <p>Производитель:</p>
-            </div>
-
-            <div className={classes['Sort__container-options']}>
-                {car.manufacturers.map(manufacturer =>
-                    <div className={classes['Sort__container-element']}
-                         style={manufacturer.id === car.selectedManufacturer.id ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}  //make selected option visible
-                         key={car.id}
-                         onClick={() => car.setSelectedManufacturer(manufacturer)}
+                <div className={classes['Sort__container-options']}>
+                    <div
+                        className={classes['Sort__container-element']}
+                        style={'all'=== car.selectedManufacturer ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}
+                        onClick={getAllCars}
                     >
-                        {manufacturer.name}
+                        Все
                     </div>
-                )}
+
+                    {car.manufacturers.map((manufacturer,index) =>
+                        <div className={classes['Sort__container-element']}
+                             style={manufacturer.id === car.selectedManufacturer.id ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}  //make selected option visible
+                             key={index}
+                             onClick={() => car.setSelectedManufacturer(manufacturer)}
+                        >
+                            {manufacturer.name}
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </Layout>
+
     );
 })
 export default ManufacturerBar;

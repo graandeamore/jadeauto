@@ -1,20 +1,44 @@
 //main page
 import React from 'react';
 import classes from '../scss/Jade.module.scss'
-import Layout from "../utils/Layout";
 import ManufacturerBar from '../components/ManufacturerBar'
-import NameBar from "../components/NameBar";
+import CarNameBar from "../components/CarNameBar";
 import CarList from '../components/CarList'
-const Jade = () => {
+import {observer} from 'mobx-react-lite'
+import {Context} from '../index'
+import {useContext, useEffect} from 'react'
+import {fetchManufacturers,fetchCarNames, fetchCars} from '../http/carAPI'
+import FrontPage from '../components/FrontPage'
+import Pages from '../components/Pages'
+const Jade = observer(() => {
+    const {car} = useContext(Context)
+
+    useEffect(() => {
+        fetchManufacturers().then(data => car.setManufacturers(data))
+        fetchCarNames().then(data => car.setCarNames(data))
+        fetchCars(null, null, 1, car.limit).then(data => {
+            car.setCars(data.rows)
+            car.setTotalCount(data.count)
+        })
+    },[])
+
+    useEffect(() => {
+        fetchCars(car.selectedManufacturer.id, car.selectedCarName.id, car.page, car.limit).then(data => {
+            car.setCars(data.rows)
+            car.setTotalCount(data.count)
+        })
+    }, [car.page, car.selectedManufacturer, car.selectedCarName])
+
     return (
-        <Layout>
-            <div className={classes.Jade}>
-                        <ManufacturerBar/>
-                        <NameBar/>
-                        <CarList/>
-                </div>
-        </Layout>
+        <div className={classes.Jade}>
+            <FrontPage/>
+            <ManufacturerBar/>
+            <CarNameBar/>
+            <CarList/>
+            <Pages/>
+        </div>
+
     );
-};
+})
 
 export default Jade;

@@ -1,0 +1,22 @@
+@import 'variables';
+@import "mixins";
+.Admin{
+  font-size: inherit;
+}
+.Admin__panel{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  p{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: $f-middle;
+    border-bottom: 4px solid $red;
+
+  }
+  .Admin__panel-button{
+   @include button();
+  }
+}

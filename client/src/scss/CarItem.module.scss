@@ -3,11 +3,11 @@
   margin: 10px 0;
   height: 150px;
   cursor: pointer;
-
   .CarItem{
     display: flex;
     align-items: center;
     border: 1px solid $grey;
+    border-left: none;
     height: 100%;
     img {
       width: 150px;
@@ -19,6 +19,7 @@
       display: flex;
       justify-content: space-between;
       padding: 0 20px;
+      color: white;
       .CarItem__params,.CarItem__offer{
         display: flex;
         flex-direction: column;
@@ -28,6 +29,7 @@
         }
       }
       .CarItem__offer{
+        text-align: right;
         .CarItem__offer-price{
           font-size: $f-middle;
         }
