@@ -10,6 +10,7 @@ import {useContext, useEffect} from 'react'
 import {fetchManufacturers,fetchCarNames, fetchCars} from '../http/carAPI'
 import FrontPage from '../components/FrontPage'
 import Pages from '../components/Pages'
+
 const Jade = observer(() => {
     const {car} = useContext(Context)
 

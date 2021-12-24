@@ -65,7 +65,9 @@ const Auth = observer(() => {
                                 type='password'
                                 placeholder={'Введите пароль'}
                                 value={password}
-                                onChange={e => setPassword(e.target.value)}/>
+                                onChange={e => setPassword(e.target.value)}
+                                maxLength="11"
+                            />
                             <hr/>
                             <button
                                 className={classes['Modal__data-button']}

@@ -1,5 +1,4 @@
 @import 'variables';
-
 .NavBar{
   display: flex;
   justify-content: space-between;
@@ -9,9 +8,10 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    img{
+    .NavBar__logo-img{
       width: 100px;
-      border-radius: 100%;
+      height: 100px;
+      background-size: cover;
     }
     p{
       font-size: $f-middle;
@@ -29,9 +29,14 @@
   .NavBar__nav{
     display: flex;
     align-items: center;
+    .NavBar__nav-inst{
+      width: 30px;
+      height: 30px;
+      background-size: cover;
+      margin-right: 15px;
+    }
     .NavBar__nav-phone{
       display: flex;
-      margin-left: -20px ;
       padding-right:10px ;
       p{
         color: $grey;
@@ -57,7 +62,6 @@
     }
     .NavBar__nav-log{
       display: flex;
-      margin-right: -10px;
       padding-left: 10px ;
       color: white;
       cursor: pointer;
@@ -78,3 +82,45 @@
     }
   }
 }
+@media (max-width: 1650px) {
+  .NavBar {
+    .NavBar__logo {
+      .NavBar__logo-img {
+        width: calc(40px + (100 - 40) * (100vw - 320px) / (1650 - 320));
+        height: calc(40px + (100 - 40) * (100vw - 320px) / (1650 - 320));
+      }
+      p {
+        font-size: calc(12px + (24 - 12) * (100vw - 320px) / (1650 - 320));
+      }
+    }
+    .NavBar__nav {
+      .NavBar__nav-inst{
+        width: calc(14px + (30 - 14) * (100vw - 320px) / (1650 - 320));
+        height: calc(14px + (30 - 14) * (100vw - 320px) / (1650 - 320));
+        margin-right: calc(5px + (15 - 5) * (100vw - 320px) / (1650 - 320));
+      }
+      .NavBar__nav-phone {
+        padding-right: calc(3px + (10 - 3) * (100vw - 320px) / (1650 - 320));
+        p {
+          font-size: calc(8px + (18 - 8) * (100vw - 320px) / (1650 - 320));
+        }
+
+      }
+      .NavBar__nav-spacer {
+        height: calc(10px + (30 - 10) * (100vw - 320px) / (1650 - 320));
+        width: calc(1px + (2 - 1) * (100vw - 320px) / (1650 - 320));
+      }
+      .NavBar__nav-log{
+        padding-left: calc(3px + (10 - 3) * (100vw - 320px) / (1650 - 320)) ;
+        p{
+          font-size: calc(8px + (18 - 8) * (100vw - 320px) / (1650 - 320));
+        }
+        p:first-child{
+          padding-right: calc(3px + (10 - 3) * (100vw - 320px) / (1650 - 320)) ;
+        }
+      }
+      font-size: calc(8px + (18 - 8) * (100vw - 320px) / (1650 - 320));
+    }
+  }
+}
+

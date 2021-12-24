@@ -12,7 +12,17 @@ import {fetchManufacturers,fetchCarNames, fetchCars} from '../http/carAPI'
 import classes from '../scss/Admin.module.scss'
 import Pages from '../components/Pages'
 import {observer} from "mobx-react-lite";
-import Footer from '../components/Footer'
+
+// const [loading, setLoading] = useState(true)
+//
+// useEffect(() => {
+//     check().then(data => {
+//         user.setUser(true)
+//         user.setIsAuth(true)
+//     }).finally(() => setLoading(false))
+// },[])
+//
+//
 
 const Admin = observer(() => {
     const [ManufacturerVisible, setManufacturerVisible] = useState(false)

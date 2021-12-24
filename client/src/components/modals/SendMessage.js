@@ -22,7 +22,7 @@ const SendMessage = ({visible,setSendMessageVisible,car}) => {
                         type="text"
                         placeholder={'Номер телефона'}
                         onChange={e => setValue(e.target.value)}
-                        mask="+7\(999) 999-9999"
+                        mask="+7\(999) 999-99-99"
                         maskChar=" "
                     />
                    <hr/>
