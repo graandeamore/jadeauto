@@ -33,6 +33,7 @@ const Car = sequelize.define('car', {
     date:                {type: DataTypes.STRING,    allowNull: false },          // Дата
     description:         {type: DataTypes.STRING,    allowNull: false },          // Описание
     video:               {type: DataTypes.STRING,    allowNull: false },           // Видео
+    image:               {type: DataTypes.STRING,    allowNull: false }            // Главное фото
 })
 
 const CarName = sequelize.define('car_name', {

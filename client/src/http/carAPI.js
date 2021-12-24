@@ -37,4 +37,9 @@ export const fetchOneCar = async (id) => {
     return data
 }
 
+export const fetchOnePhoto = async (id) => {
+    const {data} = await $host.get('api/car-img/' + id)
+    return data
+}
+
 

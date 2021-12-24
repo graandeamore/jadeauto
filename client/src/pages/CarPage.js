@@ -4,7 +4,6 @@ import classes from "../scss/CarPage.module.scss";
 import {useParams} from 'react-router-dom'
 import {observer} from "mobx-react-lite";
 import {fetchOneCar} from "../http/carAPI";
-import notFoundPic from '../graphics/not-found.png'
 import ReactPlayer from 'react-player'
 import SendMessage from '../components/modals/SendMessage'
 
@@ -23,7 +22,7 @@ const CarPage = observer(() => {
     },[id]);
     return (
         <Layout>
-            <div className={classes.CarPage}>
+            <div className={classes['CarPage']}>
                 <div className={classes['CarPage__visual']}>
                     <p className={classes['CarPage__title']}>{car.manufacturerName} {car.nameName}, {car.year} год</p>
                     <div className={classes['CarPage__visual-images']}>
@@ -39,11 +38,11 @@ const CarPage = observer(() => {
                             <div
                                 className={classes['CarPage__visual-images-main']}
                             >
-                            <ReactPlayer
-                                className={classes['CarPage__visual-images-main-video']}
-                                controls
-                                url = {process.env.REACT_APP_API_URL + car.video}
-                            />
+                                <ReactPlayer
+                                    className={classes['CarPage__visual-images-main-video']}
+                                    controls
+                                    url = {process.env.REACT_APP_API_URL + car.video}
+                                />
                             </div>
                         }
 
@@ -51,22 +50,21 @@ const CarPage = observer(() => {
                             {car.images.length ? car.images.map((image,index) =>
                                 <div
                                     className={classes['CarPage__visual-images-extends-item']}
-                                    style={index == selectedImg ? {border:"3px solid white", backgroundImage: `url("${process.env.REACT_APP_API_URL}${image.img}")`}
+                                    style={selectedImg === index ? {border:"3px solid white", backgroundImage: `url("${process.env.REACT_APP_API_URL}${image.img}")`}
                                         : {border:"1px solid grey", backgroundImage: `url("${process.env.REACT_APP_API_URL}${image.img}")`}}
                                     key={index}
                                     onClick={() => setSelectedImg(index)}
                                 />
-                            ) : <span/>
+                            ) : <span />
 
                             }
-                            <div
-                                className={classes['CarPage__visual-images-extends-item']}
-                            >
-                                <ReactPlayer
-                                    className={classes['CarPage__visual-images-extends-item-video']}
-                                    url = {process.env.REACT_APP_API_URL + car.video}
-                                    onClick={() => setSelectedImg('video')}
-                                />
+                            <div className={classes['CarPage__visual-images-extends-item']}>
+                                    <ReactPlayer
+                                        className={classes['video']}
+                                        url = {process.env.REACT_APP_API_URL + car.video}
+                                        onClick={() => setSelectedImg('video')}
+                                        style={selectedImg === 'video' ? {border:"3px solid white"} : {border:"1px solid grey"}}
+                                    />
                             </div>
 
                         </div>

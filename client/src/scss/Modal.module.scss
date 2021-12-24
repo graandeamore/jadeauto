@@ -41,6 +41,10 @@
     cursor: pointer;
     width: fit-content;
     margin: 5px 5px 5px 0;
+    &:hover{
+      color: $red;
+      transition: color 0.4s;
+    }
   }
   input{
     @include input();
@@ -64,4 +68,7 @@
    @include link();
     text-overflow: ellipsis;
   }
+}
+@media (max-width: 1650px) {
+
 }

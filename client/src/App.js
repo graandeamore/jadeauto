@@ -5,7 +5,7 @@ import NavBar from "./components/NavBar";
 import {observer} from "mobx-react-lite";
 import {Context} from "./index";
 import {check} from "./http/userAPI";
-import gif from './graphics/loader.gif'
+import gif from './assets/loader.gif'
 import classes from './scss/Jade.module.scss'
 
 const App = observer(() => {
