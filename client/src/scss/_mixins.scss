@@ -34,17 +34,19 @@
   }
 }
 @mixin button(){
+  display: flex;
   color: white;
   font-size: $f-min;
   border: none;
   border-radius: 2px;
   cursor: pointer;
   width: 260px;
-  margin-top: 20px;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   letter-spacing: 1px;
   background-color: $grey;
-  margin-top: 10px;
+  height: calc(20px + (30 - 20) * (100vw - 320px) / (1650 - 320)) ;
+  margin: 20px auto 0;
   &:hover{
     background-color: $red;
     transition:  background-color  .3s;
@@ -91,4 +93,5 @@
   .Sort__container-options{
     font-size: calc(10px + (16 - 10) * ((100vw - 320px) / (1650 - 320)));
   }
+
 }
