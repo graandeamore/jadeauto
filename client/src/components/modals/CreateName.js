@@ -1,15 +1,16 @@
-// CREATE HERE MODALSs
-import React, {Component, useState} from 'react';
+import React, {useState} from 'react';
 import classes from "../../scss/Modal.module.scss";
 import {createCarName} from "../../http/carAPI";
 
 const CreateName = ({visible,setNameVisible}) => {
     const [value, setValue] = useState('');
 
-    const addCarName = () => {
+    const addCarName = (event) => {
+        event.preventDefault();                              {/*insanely important!*/}
         createCarName({name: value}).then(() => {
             setValue('')
             setNameVisible(false)
+            window.location.reload();
         });
     };
         return (

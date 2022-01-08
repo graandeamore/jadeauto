@@ -25,10 +25,10 @@ const Car = sequelize.define('car', {
     price:               {type: DataTypes.STRING,    allowNull: false },         // Цена
     manufacturerId:      {type: DataTypes.INTEGER,   allowNull: false },         // ID Производителя  - сортировка
     carNameId:           {type: DataTypes.INTEGER,   allowNull: false },         // ID Названия       - сортировка
-    year:                {type: DataTypes.INTEGER,   allowNull: false},         // Год
+    year:                {type: DataTypes.STRING,    allowNull: false},         // Год
     motor:               {type: DataTypes.STRING,    allowNull: false },         // Двигатель
     drive:               {type: DataTypes.STRING,    allowNull: false },         // Привод
-    mileage:             {type: DataTypes.INTEGER,   allowNull: false },          // Пробег
+    mileage:             {type: DataTypes.STRING,    allowNull: false },          // Пробег
     city:                {type: DataTypes.STRING,    allowNull: false  },          // Город
     date:                {type: DataTypes.STRING,    allowNull: false },          // Дата
     description:         {type: DataTypes.STRING,    allowNull: false },          // Описание

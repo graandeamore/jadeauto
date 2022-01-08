@@ -2,6 +2,7 @@
 .pagination{
   color: $grey;
   height: 50px;
+  margin-top: 10px;
   .pagination__element{
     list-style: none;
     display: flex;
@@ -11,6 +12,9 @@
       cursor: pointer;
       &:hover{
         color: white;
+      }
+      a, a:focus{
+        outline: none !important;
       }
     }
   }

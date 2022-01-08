@@ -64,6 +64,7 @@
   }
   .Sort__container-options{
     display: flex;
+    flex-wrap: wrap;
   }
   .Sort__container-element{
     border-bottom: 2px solid #333;

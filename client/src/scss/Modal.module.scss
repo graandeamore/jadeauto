@@ -32,6 +32,18 @@
   b{
     font-size: $f-middle;
   }
+  .Modal__data-inputs{
+    .Modal__data-input{
+      display: flex;
+      justify-content: space-between;
+      p{
+        color: $grey;
+      }
+      input{
+        margin: 6px 0;
+      }
+    }
+  }
   .select_container{
     display: flex;
     flex-wrap: wrap;
@@ -69,6 +81,6 @@
     text-overflow: ellipsis;
   }
 }
-@media (max-width: 1650px) {
-
+a{
+  @include link()
 }

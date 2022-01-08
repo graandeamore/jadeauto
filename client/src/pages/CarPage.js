@@ -1,3 +1,4 @@
+//CAR PAGE COMPONENT
 import React, { useEffect, useState} from 'react';
 import Layout from "../utils/Layout";
 import classes from "../scss/CarPage.module.scss";
@@ -6,20 +7,19 @@ import {observer} from "mobx-react-lite";
 import {fetchOneCar} from "../http/carAPI";
 import ReactPlayer from 'react-player'
 import SendMessage from '../components/modals/SendMessage'
+import Footer from "../components/Footer";
 
 const CarPage = observer(() => {
     const {id} = useParams();
     const [SendMessageVisible, setSendMessageVisible] = useState(false)
     const [car, setCar] = useState({images: []});
-    const [selectedImg,setSelectedImg] = useState(0)
-
-    useEffect(() => {
-        setSelectedImg(0);
-    },[])
+    const [selectedImg,setSelectedImg] = useState(null)
 
     useEffect( () => {
+        setSelectedImg(0);
         fetchOneCar(id).then(data => setCar(data));
     },[id]);
+
     return (
         <Layout>
             <div className={classes['CarPage']}>
@@ -59,12 +59,13 @@ const CarPage = observer(() => {
 
                             }
                             <div className={classes['CarPage__visual-images-extends-item']}>
-                                    <ReactPlayer
-                                        className={classes['video']}
-                                        url = {process.env.REACT_APP_API_URL + car.video}
-                                        onClick={() => setSelectedImg('video')}
-                                        style={selectedImg === 'video' ? {border:"3px solid white"} : {border:"1px solid grey"}}
-                                    />
+                                <ReactPlayer
+                                    className={classes['video']}
+                                    url = {process.env.REACT_APP_API_URL + car.video}
+                                    onClick={() => setSelectedImg('video')}
+                                    light = {true}
+                                    style={selectedImg === 'video' ? {border:"3px solid white"} : {border:"1px solid grey"}}
+                                />
                             </div>
 
                         </div>
@@ -110,16 +111,16 @@ const CarPage = observer(() => {
                         >
                             Купить
                         </div>
-
+                        {/** Send message button **/}
                         <SendMessage
                             car={car}
                             visible={SendMessageVisible}
                             setSendMessageVisible={setSendMessageVisible}
                         />
-
                     </div>
                 </div>
             </div>
+            <Footer/>
         </Layout>
     );
 })

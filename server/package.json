@@ -15,7 +15,6 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "brew": "^0.0.8",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -43,6 +42,7 @@
     "express-fileupload": "for express files uploads",
     "uuid": "for generating unique id",
     "bcrypt": "hash passwords and not keep them open",
-    "jsonwebtoken": "generate JWT (json-web-token (model: HEADER.PAYLOAD(EMAIL,NUMBER,PASSWORD).SIGNATURE))"
+    "jsonwebtoken": "generate JWT (json-web-token (model: HEADER.PAYLOAD(EMAIL,NUMBER,PASSWORD).SIGNATURE))",
+    "twilio" : "for send What's app messages"
   }
 }

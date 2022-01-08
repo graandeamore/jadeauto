@@ -10,6 +10,9 @@ const CarNameBar = observer(() => {
     useEffect(() => {
         car.setSelectedCarName("all");
     },[])
+    useEffect(() => {
+        car.setSelectedCarName('all')
+    }, [car.selectedManufacturer])
 
     const getAllCars= () => {
         car.setSelectedCarName("all");
