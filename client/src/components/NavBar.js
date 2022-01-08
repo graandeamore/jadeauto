@@ -6,11 +6,11 @@ import inst from '../assets/inst.png'
 import {observer} from "mobx-react-lite"; //needs to be optimized
 import Layout from "../utils/Layout";
 import {useNavigate} from "react-router-dom";
-import {ADMIN_ROUTE, JADE_ROUTE, LOGIN_ROUTE,INST_ROUTE} from "../utils/consts";
+import {ADMIN_ROUTE, JADE_ROUTE, LOGIN_ROUTE} from "../utils/consts";
+/** Top navbar component **/
+const NavBar = observer((userRole) => {
 
-const NavBar = observer(() => {
-
-        const {user} = useContext(Context)     //needed just in components that rendered different depended on authorization
+    const {user} = useContext(Context)     //needed just in components that rendered different depended on authorization
         const navigate = useNavigate()
 
         const logOut = () => {
@@ -24,9 +24,7 @@ const NavBar = observer(() => {
                     <div className={classes['NavBar__logo']} onClick={() => navigate(JADE_ROUTE)}>
                         <div
                             className={classes['NavBar__logo-img']}
-                            style={{
-                                backgroundImage: `url("${logo}")`
-                            }}
+                            style={{backgroundImage: `url("${logo}")`}}
                         />
                         <p>Jade Auto</p>
                     </div>
@@ -48,7 +46,7 @@ const NavBar = observer(() => {
                         <div className={classes['NavBar__nav-spacer']}/>
                         {user.isAuth ?
                             <div className={classes['NavBar__nav-log']}>
-                                <p onClick={() => navigate(ADMIN_ROUTE)}>Admin</p>
+                                {userRole.userRole === 'ADMIN' ? <p onClick={() => navigate(ADMIN_ROUTE)}>Admin</p> : null}
                                 <p onClick={() => logOut()} >Выход</p>
                             </div>
                             :

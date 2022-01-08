@@ -3,6 +3,9 @@ import React, {useContext, useEffect, useState} from 'react';
 import Layout from "../utils/Layout";
 import CreateName from "../components/modals/CreateName";
 import CreateManufacturer from "../components/modals/CreateManufacturer";
+import DeleteCarName from "../components/modals/DeleteCarName";
+import DeleteManufacturer from "../components/modals/DeleteManufacturer";
+import DeleteCar from "../components/modals/DeleteCar";
 import CreateCar from "../components/modals/CreateCar";
 import ManufacturerBar from '../components/ManufacturerBar'
 import CarNameBar from '../components/CarNameBar'
@@ -12,23 +15,15 @@ import {fetchManufacturers,fetchCarNames, fetchCars} from '../http/carAPI'
 import classes from '../scss/Admin.module.scss'
 import Pages from '../components/Pages'
 import {observer} from "mobx-react-lite";
-
-// const [loading, setLoading] = useState(true)
-//
-// useEffect(() => {
-//     check().then(data => {
-//         user.setUser(true)
-//         user.setIsAuth(true)
-//     }).finally(() => setLoading(false))
-// },[])
-//
-//
+import Footer from "../components/Footer";
 
 const Admin = observer(() => {
     const [ManufacturerVisible, setManufacturerVisible] = useState(false)
     const [CarNameVisible, setCarNameVisible] = useState(false)
     const [CarVisible, setCarVisible] = useState(false)
-
+    const [deleteManufacturerVisible, setDeleteManufacturerVisible] = useState(false)
+    const [deleteCarNameVisible, setDeleteCarNameVisible] = useState(false)
+    const [deleteCarVisible, setDeleteCarVisible] = useState(false)
     const {car} = useContext(Context)
 
     useEffect(() => {
@@ -38,15 +33,11 @@ const Admin = observer(() => {
             car.setCars(data.rows)
             car.setTotalCount(data.count)
         })
-    },[])
-
-    useEffect(() => {
         fetchCars(car.selectedManufacturer.id,car.selectedCarName.id,car.page,  car.limit).then(data => {
             car.setCars(data.rows)
             car.setTotalCount(data.count)
         })
     }, [car.page,car.selectedManufacturer,car.selectedCarName])
-
 
     return (
         <Layout>
@@ -62,6 +53,16 @@ const Admin = observer(() => {
                     <div
                         className={classes['Admin__panel-button']}
                         onClick={()=> setCarVisible(true)}>Добавить машину</div>
+                    <div
+                        className={classes['Admin__panel-button']}
+                        onClick={()=> setDeleteManufacturerVisible(true)}>Удалить Производителя</div>
+                    <div
+                        className={classes['Admin__panel-button']}
+                        onClick={()=> setDeleteCarNameVisible(true)}>Удалить Название</div>
+                    <div
+                        className={classes['Admin__panel-button']}
+                        onClick={()=> setDeleteCarVisible(true)}>Удалить Машину</div>
+
                 </div>
                 <CreateManufacturer
                     visible={ManufacturerVisible}
@@ -75,11 +76,24 @@ const Admin = observer(() => {
                     visible={CarVisible}
                     setCarVisible={setCarVisible}
                 />
+                <DeleteManufacturer
+                    visible={deleteManufacturerVisible}
+                    setDeleteManufacturerVisible={setDeleteManufacturerVisible}
+                />
+                <DeleteCarName
+                    visible={deleteCarNameVisible}
+                    setDeleteCarNameVisible={setDeleteCarNameVisible}
+                />
+                <DeleteCar
+                    visible={deleteCarVisible}
+                    setDeleteCarVisible={setDeleteCarVisible}
+                />
             </div>
             <ManufacturerBar/>
             <CarNameBar/>
             <CarList/>
             <Pages/>
+            <Footer/>
         </Layout>
     );
 })

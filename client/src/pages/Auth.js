@@ -7,6 +7,7 @@ import {registration,login} from "../http/userAPI";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import InputMask from "react-input-mask";
+import alert from "bootstrap/js/src/alert";
 
 const Auth = observer(() => {
     const location = useLocation()
@@ -16,20 +17,17 @@ const Auth = observer(() => {
     const [password, setPassword] = useState('')
     const {user} = useContext(Context)
 
-    useEffect( () => {                                              //prevent first fatch = canceled
-         isLogin? navigate(LOGIN_ROUTE) : navigate(REGISTRATION_ROUTE)
-    },[])
 
-    useEffect( () => {                                  //navigate to homepage after login
+    useEffect( () => {                                              //prevent first fetch = canceled
         if (user.isAuth) {
             navigate(JADE_ROUTE)
         }
-    },[])
+    },[user])
 
-
-    const click = async () => {
+    const click = async (event) => {
+        event.preventDefault()
         try {
-            let data
+            let data;
             if (isLogin) {
                 data = await login(number, password);
             } else {
@@ -39,7 +37,7 @@ const Auth = observer(() => {
             user.setIsAuth(true)
             navigate(JADE_ROUTE)
         } catch (e){
-            alert(e.response.data.message)
+            e.response ? alert(e.response.data.message) : console.error('uncaught', e)
         }
     }
 
@@ -71,7 +69,10 @@ const Auth = observer(() => {
                             <hr/>
                             <button
                                 className={classes['Modal__data-button']}
-                                onClick={click} >{isLogin ? 'Войти' : 'Регистрация'}</button>
+                                onClick={click}
+                            >{isLogin ? 'Войти' : 'Регистрация'}
+
+                            </button>
                         </form>
                     </div>
                     <p>{isLogin ? 'Нет аккаунта?' : 'Есть аккаунт?'}</p>

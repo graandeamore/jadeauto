@@ -40,6 +40,9 @@ export default class CarStore {
     setTotalCount(count){
         this._totalCount = count
     }
+    setLimit(count){
+        this._limit = count
+    }
 
 
     //COMPUTED FUNCTIONS - only called if internal variables have changed   //GETTERS

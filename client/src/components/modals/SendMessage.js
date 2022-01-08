@@ -5,18 +5,23 @@ import InputMask from "react-input-mask";
 
 const SendMessage = ({visible,setSendMessageVisible,car}) => {
     const [value, setValue] = useState('');
-    console.log()
     const location = useLocation()
-    const sendMessage = async () => {
-        await fetch(`${process.env.REACT_APP_API_URL}send-text?textmessage=${location.pathname}&buyer=${value}&car=${car.manufacturerName} ${car.nameName}, ${car.date}`)
-            .catch(err => console.error(err))
+    const sendMessage = async (event) => {
+        event.preventDefault();
+        value.match(/[0-9]/g).length === 11 ?
+        await fetch(`${process.env.REACT_APP_API_URL}send-text?textmessage=${process.env.REACT_APP_API_URL}${location.pathname}&buyer=${value}&car=${car.manufacturerName} ${car.nameName}, ${car.date}`)
+            .then(window.location.reload())
+            .then(alert('Вы успешно отправили заявку на покупку данного автомобиля!'))
+        :
+        alert('Введите корректный телефон!')
+
     }
 
     return (
         <div className={visible ? classes.Modal + ' '+ classes.visible : classes.Modal} onClick={() => setSendMessageVisible(false)}>
             <div className={visible ? classes.Modal__data + ' '+ classes.visible : classes.Modal__data} onClick={e => e.stopPropagation()}>
                 <form action="">
-                    <p>Отправить заявку</p>
+                    <p style={{marginBottom: 10}}>Отправить заявку</p>
                     <InputMask
                         value={value}
                         type="text"

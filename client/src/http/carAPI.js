@@ -37,9 +37,18 @@ export const fetchOneCar = async (id) => {
     return data
 }
 
-export const fetchOnePhoto = async (id) => {
-    const {data} = await $host.get('api/car-img/' + id)
-    return data
+export const deleteManufacturer = async (id) => {
+    const {data} = await $authHost({method:'DELETE', url:'api/manufacturer/'+id});
+    return data;
 }
+export const deleteCarName = async (id) => {
+    const {data} = await $authHost({method:'DELETE', url:'api/carname/'+id});
+    return data;
+}
+export const deleteCar = async (id) => {
+    const {data} = await $authHost({method:'DELETE', url:`api/car/${id}`});
+    return data;
+}
+
 
 
