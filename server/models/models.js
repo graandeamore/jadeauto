@@ -19,21 +19,23 @@ const CarsInOrder = sequelize.define('cars_in_order', {
 })
 
 const Car = sequelize.define('car', {
-    id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},      //add allownull-false
-    nameName:            {type: DataTypes.STRING,    allowNull: false  },         //название
-    manufacturerName:    {type: DataTypes.STRING,    allowNull: false },         //производитель
-    price:               {type: DataTypes.STRING,    allowNull: false },         // Цена
-    manufacturerId:      {type: DataTypes.INTEGER,   allowNull: false },         // ID Производителя  - сортировка
-    carNameId:           {type: DataTypes.INTEGER,   allowNull: false },         // ID Названия       - сортировка
-    year:                {type: DataTypes.STRING,    allowNull: false},         // Год
-    motor:               {type: DataTypes.STRING,    allowNull: false },         // Двигатель
-    drive:               {type: DataTypes.STRING,    allowNull: false },         // Привод
+    id:                  {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    nameName:            {type: DataTypes.STRING,    allowNull: false },          //название
+    manufacturerName:    {type: DataTypes.STRING,    allowNull: false },          //производитель
+    price:               {type: DataTypes.STRING,    allowNull: false },          // Цена
+    manufacturerId:      {type: DataTypes.INTEGER,   allowNull: false },          // ID Производителя  - сортировка
+    carNameId:           {type: DataTypes.INTEGER,   allowNull: false },          // ID Названия       - сортировка
+    year:                {type: DataTypes.STRING,    allowNull: false },          // Год
+    motor:               {type: DataTypes.STRING,    allowNull: false },          // Двигатель
+    drive:               {type: DataTypes.STRING,    allowNull: false },          // Привод
     mileage:             {type: DataTypes.STRING,    allowNull: false },          // Пробег
-    city:                {type: DataTypes.STRING,    allowNull: false  },          // Город
+    bodyNumber:          {type: DataTypes.STRING,    allowNull: false },          // Номер кузова
+    city:                {type: DataTypes.STRING,    allowNull: false },          // Город
     date:                {type: DataTypes.STRING,    allowNull: false },          // Дата
     description:         {type: DataTypes.STRING,    allowNull: false },          // Описание
-    video:               {type: DataTypes.STRING,    allowNull: false },           // Видео
-    image:               {type: DataTypes.STRING,    allowNull: false }            // Главное фото
+    video:               {type: DataTypes.STRING,    allowNull: false },          // Видео
+    image:               {type: DataTypes.STRING,    allowNull: false },          // Главное фото
+    status:              {type: DataTypes.STRING,    allowNull: false }           //Статус (Sold / Active)
 })
 
 const CarName = sequelize.define('car_name', {

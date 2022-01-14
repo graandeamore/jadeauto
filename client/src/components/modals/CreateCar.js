@@ -3,35 +3,54 @@ import {Context} from "../../index";
 import classes from "../../scss/Modal.module.scss";
 import {createCar, fetchCarNames, fetchManufacturers} from "../../http/carAPI";
 import {observer} from "mobx-react-lite";
-
+import imageCompression from 'browser-image-compression';
 const CreateCar = observer(({visible,setCarVisible})=> {
 
-    const {car} = useContext(Context)
-    const [description,setDescription] = useState('')
-    const [price,setPrice ] = useState('')
-    const [mileage,setMileage ] = useState('')
+    const {car} = useContext(Context);
+    const [description,setDescription] = useState('');
+    const [price,setPrice ] = useState('');
+    const [mileage,setMileage ] = useState('');
     const [motor,setMotor ] = useState('')
-    const [drive , setDrive] = useState('')
-    const [city, setCity] = useState('')
-    const [year,setYear ] = useState('')
+    const [drive , setDrive] = useState('');
+    const [city, setCity] = useState('');
+    const [year,setYear ] = useState('');
     const [video , setVideo] = useState(null);
     const [images , setImages] = useState([]);
+    const [compressedImages, setCompressedImages] = useState([]);
+    const [percentage, setPercentage] = useState(0);
+    const [bodyNumber, setBodyNumber] = useState('');
+    const [status, setStatus] = useState('');
 
-
+    const options = { // compression options
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true
+    }
     const selectVideo = e => {
         setVideo(e.target.files[0]);
     };
     const selectImages = e =>{
         setImages(e.target.files);
     }
-
     useEffect(() => {
         fetchManufacturers().then(data => car.setManufacturers(data));
         fetchCarNames().then(data => car.setCarNames(data));
-    }, [car]);
+    }, [car,percentage,status]);
 
-    const addCar = (event) => {
+    const addCar = async (event) => {
+        //remove common event behavior
         event.preventDefault()
+        //compress images
+        for (let i = 0; i < images.length; i++){
+            setPercentage(Math.round(i / images.length * 100))
+            setStatus(`Сжатие изображений: ${i+1} / ${images.length}`)
+            let compressed = await imageCompression(images[i], options)
+            compressedImages.push(compressed)
+        }
+        //set Compressed images
+        setCompressedImages(compressedImages)
+        //append form
+        setStatus('Загрузка данных')
         const formData = new FormData()
         let date = new Date().toLocaleDateString()
         formData.append('nameName', car.selectedCarName.name)
@@ -46,26 +65,23 @@ const CreateCar = observer(({visible,setCarVisible})=> {
         formData.append('city', city)
         formData.append('description', description)
         formData.append('date', date)
+        formData.append('status', 'Active')
+        formData.append('bodyNumber', bodyNumber)
         formData.append('video', video)
-        formData.append('image', images[0])
-        Array.from(images).forEach(image => {
+        formData.append('image', compressedImages[0])
+        setStatus('Загрузка изображений...')
+        Array.from(compressedImages).forEach(image => {
             formData.append('images', image);
         });
-        createCar(formData).then(() => {
-            setDescription('')
-            setPrice('')
-            setMileage('')
-            setMotor('')
-            setDrive('')
-            setCity('')
-            setYear('')
-            setVideo(null)
-            setImages([])
-            setCarVisible(false)
+        //send form-data and clear inputs
+        setStatus('Отправка на сервер...')
+        setPercentage(98)
+        await createCar(formData).then(() => {
+            setStatus('Успешно!')
+            setPercentage(100)
             window.location.reload();
         })
     }
-
     return (
         <div
             className={visible ? classes['Modal'] + ' '+ classes['visible'] : classes['Modal']}
@@ -75,6 +91,28 @@ const CreateCar = observer(({visible,setCarVisible})=> {
                 className={visible ? classes['Modal__data'] + ' '+ classes['visible'] : classes['Modal__data']}
                 onClick={e => e.stopPropagation()}>
                 <form>
+                    {
+                        percentage !== 0 ?
+                            <div>
+                                <p>{status}</p>
+                                <div className={classes['Modal__data-statusbar']}>
+                                    <div className={classes['Modal__data-statusbar-bar']}>
+                                        <div
+                                            className={classes['Modal__data-statusbar-bar-status']}
+                                            style={{width: 1.59 * percentage}}
+                                        />
+                                        {/*159px = 100%*/}
+                                    </div>
+                                    <div className={classes['Modal__data-statusbar-percentage']}>
+                                        {percentage + '%'}
+                                    </div>
+                                </div>
+                            </div>
+
+                            :
+                            null
+                    }
+
                     <b>{car.selectedManufacturer.name || "Выберите Производителя"}</b>
                     <div className={classes['select_container']}>
 
@@ -134,11 +172,16 @@ const CreateCar = observer(({visible,setCarVisible})=> {
                             <p>Год:</p>
                             <input type="text" value={year} onChange={e => setYear(e.target.value)}/>
                         </div>
+
+                        <div className={classes['Modal__data-input']}>
+                            <p>Номер кузова:</p>
+                            <input type="text" value={bodyNumber} onChange={e => setBodyNumber(e.target.value)}/>
+                        </div>
+
                         <div className={classes['Modal__data-input']}>
                             <p>Описание:</p>
                             <input type="text" value={description} onChange={e => setDescription(e.target.value)}/>
                         </div>
-
                     </div>
 
 

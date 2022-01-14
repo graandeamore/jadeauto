@@ -17,12 +17,13 @@
         height: 600px;
         background-repeat: no-repeat;
         background-size: contain;
-        border: 1px solid $grey;
         background-position: 50%,50%;
         margin-bottom: 20px;
+        border: 2px solid #fefefe;
         .CarPage__visual-images-main-video{
           width: 594px !important;
           height: 594px !important;
+          border: 2px solid #fefefe;
         }
       }
       .CarPage__visual-images-extends{

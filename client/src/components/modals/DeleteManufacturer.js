@@ -10,7 +10,7 @@ const CreateName = ({visible,setDeleteManufacturerVisible}) => {
 
     const Delete = async (event) => {
 
-    event.preventDefault();
+        event.preventDefault();
         await deleteManufacturer(selectedManufacturer.id)
             .then( () => {
                 setDeleteManufacturerVisible(false)

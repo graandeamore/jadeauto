@@ -37,6 +37,11 @@ export const fetchOneCar = async (id) => {
     return data
 }
 
+export const changeStatus = async (id, value) => {
+    const {data} = await $authHost({method:'PUT', url:`api/car/${id}`, data: value});
+    return data;
+}
+
 export const deleteManufacturer = async (id) => {
     const {data} = await $authHost({method:'DELETE', url:'api/manufacturer/'+id});
     return data;
