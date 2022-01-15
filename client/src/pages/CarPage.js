@@ -14,11 +14,10 @@ const CarPage = observer(() => {
     const [SendMessageVisible, setSendMessageVisible] = useState(false)
     const [car, setCar] = useState({images: []});
     const [selectedImg,setSelectedImg] = useState(null)
-    const fullSize = () => {
-        
-    }
+    const [fullImage, setFullImage] = useState('')
     useEffect( () => {
         setSelectedImg(0);
+        setFullImage('false')
         fetchOneCar(id).then(data => setCar(data));
     },[id]);
 
@@ -27,19 +26,21 @@ const CarPage = observer(() => {
             <div className={classes['CarPage']}>
                 <div className={classes['CarPage__visual']}>
                     {
-                        car.status === 'Sold' ? <span> Эта машина продана ! </span> : null
+                        car.status === 'Sold' ? <span
+                        className={classes['CarPage__visual-alert']}
+                        > Эта машина продана ! </span> : null
                     }
                     <p className={classes['CarPage__title']}
                        style={car.status === 'Sold' ? {textDecoration: 'line-through'} : null}
                     >{car.manufacturerName} {car.nameName}, {car.year} год</p>
                     <div className={classes['CarPage__visual-images']}>
-                        {car.images.length && selectedImg !== 'video'?
+                        {car.images.length && selectedImg !== 'video' ?
                             <div
-                                className={classes['CarPage__visual-images-main']}
+                                className={fullImage == 'false' ? classes['CarPage__visual-images-main'] : classes['CarPage__visual-images-main-active']}
                                 style={{
                                     backgroundImage: `url("${process.env.REACT_APP_API_URL}${car.images[selectedImg].img}")`
                                 }}
-                                onClick={fullSize}
+                                onClick={() => setFullImage('true')}
                             >
                             </div>
                             :

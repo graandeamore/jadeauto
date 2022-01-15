@@ -30,8 +30,11 @@
   text-align: center;
   color: white;
   .Delete__option{
-    display: flex;
-    flex-wrap: wrap;
+    .select{
+      display: flex;
+      justify-content: space-between;
+      min-width: 350px;
+    }
   }
   .Modal__data-statusbar{
     width: 200px;

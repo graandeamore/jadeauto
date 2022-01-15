@@ -8,9 +8,6 @@ import DeleteManufacturer from "../components/modals/DeleteManufacturer";
 import DeleteCar from "../components/modals/DeleteCar";
 import StatusCar from '../components/modals/StatusCar'
 import CreateCar from "../components/modals/CreateCar";
-import ManufacturerBar from '../components/ManufacturerBar'
-import CarNameBar from '../components/CarNameBar'
-import CarList from '../components/CarList'
 import {Context} from "../index";
 import {fetchManufacturers,fetchCarNames, fetchCars} from '../http/carAPI'
 import classes from '../scss/Admin.module.scss'
@@ -93,9 +90,6 @@ const Admin = observer(() => {
                     setStatusCarVisible={setStatusCarVisible}
                 />
             </div>
-            <ManufacturerBar/>
-            <CarNameBar/>
-            <CarList/>
             <Footer/>
         </Layout>
     );

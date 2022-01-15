@@ -5,6 +5,9 @@
   display: flex;
   justify-content: space-around;
   .CarPage__visual{
+    .CarPage__visual-alert{
+     border-bottom: 1px solid $red;
+    }
     .CarPage__title{
       font-size: $f-huge;
       font-weight: normal;
@@ -20,11 +23,23 @@
         background-position: 50%,50%;
         margin-bottom: 20px;
         border: 2px solid #fefefe;
+        cursor: pointer;
         .CarPage__visual-images-main-video{
           width: 594px !important;
           height: 594px !important;
           border: 2px solid #fefefe;
         }
+      }
+      .CarPage__visual-images-main-active{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 1200px;
+        height: 1200px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
       .CarPage__visual-images-extends{
         width: 600px;

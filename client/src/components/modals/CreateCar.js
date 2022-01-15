@@ -4,8 +4,8 @@ import classes from "../../scss/Modal.module.scss";
 import {createCar, fetchCarNames, fetchManufacturers} from "../../http/carAPI";
 import {observer} from "mobx-react-lite";
 import imageCompression from 'browser-image-compression';
-const CreateCar = observer(({visible,setCarVisible})=> {
 
+const CreateCar = observer(({visible,setCarVisible})=> {
     const {car} = useContext(Context);
     const [description,setDescription] = useState('');
     const [price,setPrice ] = useState('');
@@ -41,46 +41,50 @@ const CreateCar = observer(({visible,setCarVisible})=> {
         //remove common event behavior
         event.preventDefault()
         //compress images
-        for (let i = 0; i < images.length; i++){
-            setPercentage(Math.round(i / images.length * 100))
-            setStatus(`Сжатие изображений: ${i+1} / ${images.length}`)
-            let compressed = await imageCompression(images[i], options)
-            compressedImages.push(compressed)
-        }
-        //set Compressed images
-        setCompressedImages(compressedImages)
-        //append form
-        setStatus('Загрузка данных')
-        const formData = new FormData()
-        let date = new Date().toLocaleDateString()
-        formData.append('nameName', car.selectedCarName.name)
-        formData.append('manufacturerName', car.selectedManufacturer.name)
-        formData.append('price', Number(price).toLocaleString('ru'))
-        formData.append('manufacturerId', Number(car.selectedManufacturer.id))
-        formData.append('carNameId', Number(car.selectedCarName.id))
-        formData.append('year', year)
-        formData.append('motor', motor)
-        formData.append('drive', drive)
-        formData.append('mileage', mileage)
-        formData.append('city', city)
-        formData.append('description', description)
-        formData.append('date', date)
-        formData.append('status', 'Active')
-        formData.append('bodyNumber', bodyNumber)
-        formData.append('video', video)
-        formData.append('image', compressedImages[0])
-        setStatus('Загрузка изображений...')
-        Array.from(compressedImages).forEach(image => {
-            formData.append('images', image);
-        });
-        //send form-data and clear inputs
-        setStatus('Отправка на сервер...')
-        setPercentage(98)
-        await createCar(formData).then(() => {
-            setStatus('Успешно!')
-            setPercentage(100)
-            window.location.reload();
-        })
+        if (price && year && motor && drive && mileage && city && description
+            && bodyNumber && video && images.length
+            && car.selectedCarName.id && car.selectedManufacturer.id) {
+            for (let i = 0; i < images.length; i++){
+                setPercentage(Math.round(i / images.length * 100))
+                setStatus(`Сжатие изображений: ${i+1} / ${images.length}`)
+                let compressed = await imageCompression(images[i], options)
+                compressedImages.push(compressed)
+            }
+            //set Compressed images
+            setCompressedImages(compressedImages)
+            //append form
+            setStatus('Загрузка данных')
+            const formData = new FormData()
+            let date = new Date().toLocaleDateString()
+            formData.append('nameName', car.selectedCarName.name)
+            formData.append('manufacturerName', car.selectedManufacturer.name)
+            formData.append('price', Number(price).toLocaleString('ru'))
+            formData.append('manufacturerId', Number(car.selectedManufacturer.id))
+            formData.append('carNameId', Number(car.selectedCarName.id))
+            formData.append('year', year)
+            formData.append('motor', motor)
+            formData.append('drive', drive)
+            formData.append('mileage', mileage)
+            formData.append('city', city)
+            formData.append('description', description)
+            formData.append('date', date)
+            formData.append('status', 'Active')
+            formData.append('bodyNumber', bodyNumber)
+            formData.append('video', video)
+            formData.append('image', compressedImages[0])
+            setStatus('Загрузка изображений...')
+            Array.from(compressedImages).forEach(image => {
+                formData.append('images', image);
+            });
+            //send form-data and clear inputs
+            setStatus('Отправка на сервер...')
+            setPercentage(98)
+            await createCar(formData).then(() => {
+                setStatus('Успешно!')
+                setPercentage(100)
+                window.location.reload();
+            })
+        } else alert('Заполните все поля !')
     }
     return (
         <div
