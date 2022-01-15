@@ -1,12 +1,12 @@
 const uuid = require('uuid')                            //import unique ids
 const path = require('path')                              //import path
-const {Car, CarImages, CarsInOrder} = require('../models/models')          //import Car and car_info db models
+const {Car, CarImages} = require('../models/models')          //import Car and car_info db models
 const ApiError = require('../error/ApiError')                 //import API errors
 const fs = require('fs')
 class CarController {
     async create(req,res,next){                                 //create car
         try{
-            let {nameName, manufacturerName, price, manufacturerId, carNameId, year, motor, drive, mileage, city, date, description } = req.body          //request info about car
+            let {nameName, manufacturerName, price, manufacturerId, carNameId, year, motor, drive, mileage, city, date, status, bodyNumber, description } = req.body          //request info about car
             const {video, image, images} = req.files;                                                                 //request video
             let videoName = uuid.v4() + '.mp4';                                                           //generate unique filename
             let imgName  = uuid.v4() + '.jpg';
@@ -22,6 +22,8 @@ class CarController {
                 mileage,
                 city,
                 date,
+                status,
+                bodyNumber,
                 description,
                 video: videoName,
                 image: imgName})
@@ -31,7 +33,7 @@ class CarController {
             if (images.length){
                 for (let i = 0; i<images.length;i++) {
                     imgName = uuid.v4() + '.jpg'
-                    images[i].mv(path.resolve(__dirname,'..', 'static', imgName))
+                    await images[i].mv(path.resolve(__dirname,'..', 'static', imgName))
                     await CarImages.create({
                         img: imgName,
                         carId: car.id
@@ -81,6 +83,7 @@ class CarController {
             await Car.findOne({where:{id}})
                 .then( async data => {
                     if(data) {
+                        // await extract image & video_name.then(delete)
                         await Car.destroy({where:{id}}).then(() => {
                             return res.json("Car deleted");
                         })
@@ -90,18 +93,30 @@ class CarController {
                 })
             let images;
             images = await CarImages.findAll({where:{carId: id}})     //make it later it is a code for deleting images from static
-            await images.forEach(e => {
-                    fs.unlink(__dirname +'..'+ 'static'+e.img, err => {
-                        if (err) {
-                            console.error(err)
-                            return
-                        }
-                        console.log('removed', e.img)
-                    })
+            images.forEach(e => {
+                console.log(e)
                 }
             )
         } catch (e) {
             console.error(e)
+        }
+    }
+    async update(req, res) {
+        try {
+            const {id} = req.params;
+            await Car.findOne({where:{id}})
+                .then( async data => {
+                    if(data) {
+                        await Car.update({status: req.body.status}, {where:{id}})
+                            .then(() => {
+                                return res.json("Car updated")
+                            })
+                    } else {
+                        return res.json("This Car doesn't exist in DB");
+                    }
+                })
+        } catch (e) {
+            return res.json(e);
         }
     }
 }

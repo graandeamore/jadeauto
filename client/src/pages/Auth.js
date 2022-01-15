@@ -7,7 +7,6 @@ import {registration,login} from "../http/userAPI";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import InputMask from "react-input-mask";
-import alert from "bootstrap/js/src/alert";
 
 const Auth = observer(() => {
     const location = useLocation()

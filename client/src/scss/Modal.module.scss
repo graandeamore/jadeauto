@@ -29,6 +29,29 @@
   display: block;
   text-align: center;
   color: white;
+  .Delete__option{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .Modal__data-statusbar{
+    width: 200px;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    .Modal__data-statusbar-bar{
+      width: 180px;
+      border: 1px solid $grey;
+      margin-right: 5px;
+      .Modal__data-statusbar-bar-status{
+        width: 159px;
+        height: 100%;
+        background-color: $red;
+      }
+    }
+    .Modal__data-statusbar-percentage{
+    }
+  }
   b{
     font-size: $f-middle;
   }

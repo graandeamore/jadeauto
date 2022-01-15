@@ -13,6 +13,11 @@ const Pages = observer(() => {
         pages.push(i + 1)
     }
 
+    const switchPage = (page) => {
+        car.setPage(page)
+        //scroll to first
+    }
+
     return (
         <Layout>
             <div className={classes['pagination']}>
@@ -22,7 +27,7 @@ const Pages = observer(() => {
                             className={classes['pagination__element-item']}
                             key={page}
                             style={car.page === page ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}
-                            onClick={() => car.setPage(page)}
+                            onClick={() => switchPage(page)}
                         >
                             {page}
                         </Pagination.Item>
