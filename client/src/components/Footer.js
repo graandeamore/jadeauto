@@ -16,7 +16,7 @@ const Footer = () => {
                         <div className={classes['Footer__column-logo-description']}>
                             <p>Jade Auto</p>
                             <p>Владивосток / Казахстан</p>
-                            <p className={classes['Footer__column-logo-description-v']}>alfa: v1.0.1</p>
+                            <p className={classes['Footer__column-logo-description-v']}>alfa: v1.0.5</p>
                         </div>
                     </div>
 

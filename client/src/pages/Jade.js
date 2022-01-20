@@ -11,6 +11,7 @@ import {fetchManufacturers,fetchCarNames, fetchCars} from '../http/carAPI'
 import FrontPage from '../components/FrontPage'
 import Pages from '../components/Pages'
 import Footer from '../components/Footer'
+
 const Jade = observer(() => {
     const {car} = useContext(Context)
 
@@ -22,6 +23,7 @@ const Jade = observer(() => {
             car.setTotalCount(data.count)
         })
     },[])
+
     useEffect(() => {
         fetchCars(car.selectedManufacturer.id, car.selectedCarName.id, car.page, car.limit).then(data => {
             car.setCars(data.rows)

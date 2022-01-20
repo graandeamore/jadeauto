@@ -15,7 +15,7 @@ const Pages = observer(() => {
 
     const switchPage = (page) => {
         car.setPage(page)
-        //scroll to first
+        window.scrollTo(0, 0);
     }
 
     return (

@@ -20,12 +20,13 @@ const CreateCar = observer(({visible,setCarVisible})=> {
     const [percentage, setPercentage] = useState(0);
     const [bodyNumber, setBodyNumber] = useState('');
     const [status, setStatus] = useState('');
-
+    console.log(description.replace(/([^\r])\n/g, "$1\r\n"))
     const options = { // compression options
         maxSizeMB: 1,
         maxWidthOrHeight: 1920,
         useWebWorker: true
     }
+
     const selectVideo = e => {
         setVideo(e.target.files[0]);
     };
@@ -184,7 +185,7 @@ const CreateCar = observer(({visible,setCarVisible})=> {
 
                         <div className={classes['Modal__data-input']}>
                             <p>Описание:</p>
-                            <input type="text" value={description} onChange={e => setDescription(e.target.value)}/>
+                            <textarea type="text" value={description} onChange={e => setDescription(e.target.value)}/>
                         </div>
                     </div>
 

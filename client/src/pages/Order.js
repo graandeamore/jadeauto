@@ -1,4 +1,4 @@
-//order page (not realized seems to be deleted)
+//order page (not realized)
 import React from 'react';
 
 const Order = () => {

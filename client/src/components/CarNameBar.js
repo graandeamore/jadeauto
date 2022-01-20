@@ -27,7 +27,7 @@ const CarNameBar = observer(() => {
                 <div className={classes['Sort__container-options']}>
                     <div
                         className={classes['Sort__container-element']}
-                        style={'all'=== car.selectedCarName ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}
+                        style={car.selectedCarName === 'all' ? {borderBottom:"2px solid #CD3319"} : {borderBottom:"none"}}
                         onClick={getAllCars}
                     >
                         Все

@@ -8,41 +8,50 @@ import {fetchOneCar} from "../http/carAPI";
 import ReactPlayer from 'react-player'
 import SendMessage from '../components/modals/SendMessage'
 import Footer from "../components/Footer";
+import FullSize from '../components/modals/FullSize'
+import disableScroll from 'disable-scroll';
 
 const CarPage = observer(() => {
     const {id} = useParams();
     const [SendMessageVisible, setSendMessageVisible] = useState(false)
     const [car, setCar] = useState({images: []});
     const [selectedImg,setSelectedImg] = useState(null)
-    const [fullImage, setFullImage] = useState('')
+    const [fullSizeVisible, setFullSizeVisible] = useState(null)
+
     useEffect( () => {
+        window.scrollTo(0, 0);
         setSelectedImg(0);
-        setFullImage('false')
+        setFullSizeVisible(false)
         fetchOneCar(id).then(data => setCar(data));
     },[id]);
+
+    fullSizeVisible ? disableScroll.on() : disableScroll.off()
 
     return (
         <Layout>
             <div className={classes['CarPage']}>
                 <div className={classes['CarPage__visual']}>
+                    {/** Sold-alert **/}
                     {
                         car.status === 'Sold' ? <span
-                        className={classes['CarPage__visual-alert']}
+                            className={classes['CarPage__visual-alert']}
                         > Эта машина продана ! </span> : null
                     }
-                    <p className={classes['CarPage__title']}
-                       style={car.status === 'Sold' ? {textDecoration: 'line-through'} : null}
-                    >{car.manufacturerName} {car.nameName}, {car.year} год</p>
+                    {/** Car title **/}
+                    <p
+                        className={classes['CarPage__title']}
+                        style={car.status === 'Sold' ? {textDecoration: 'line-through'} : null}
+                    >
+                        {car.manufacturerName} {car.nameName}, {car.year} год
+                    </p>
                     <div className={classes['CarPage__visual-images']}>
+                        {/** Car Big Image or Video**/}
                         {car.images.length && selectedImg !== 'video' ?
                             <div
-                                className={fullImage == 'false' ? classes['CarPage__visual-images-main'] : classes['CarPage__visual-images-main-active']}
-                                style={{
-                                    backgroundImage: `url("${process.env.REACT_APP_API_URL}${car.images[selectedImg].img}")`
-                                }}
-                                onClick={() => setFullImage('true')}
-                            >
-                            </div>
+                                className={classes['CarPage__visual-images-main']}
+                                style={{backgroundImage: `url("${process.env.REACT_APP_API_URL}${car.images[selectedImg].img}")`}}
+                                onClick={() => setFullSizeVisible(true)}
+                            />
                             :
                             <div
                                 className={classes['CarPage__visual-images-main']}
@@ -54,7 +63,7 @@ const CarPage = observer(() => {
                                 />
                             </div>
                         }
-
+                        {/** Additional images **/}
                         <div className={classes['CarPage__visual-images-extends']}>
                             {car.images.length ? car.images.map((image,index) =>
                                 <div
@@ -64,9 +73,10 @@ const CarPage = observer(() => {
                                     key={index}
                                     onClick={() => setSelectedImg(index)}
                                 />
-                            ) : <span />
+                            ) : null
 
                             }
+                            {/** Last additional visual item -> video **/}
                             <div className={classes['CarPage__visual-images-extends-item']}>
                                 <ReactPlayer
                                     className={classes['video']}
@@ -76,14 +86,12 @@ const CarPage = observer(() => {
                                     style={selectedImg === 'video' ? {border:"3px solid white"} : {border:"1px solid grey"}}
                                 />
                             </div>
-
                         </div>
-
                     </div>
                 </div>
                 <div className={classes['CarPage__info']}>
                     <p className={classes['CarPage__info-price']}><b>{car.price}</b> ₽</p>
-
+                    {/** Car description **/}
                     <div className={classes['CarPage__info-details']}>
                         <div className={classes['CarPage__info-details-item']}>
                             <p className={classes['CarItem__params-details-item-def']}>Двигатель:</p>
@@ -111,9 +119,9 @@ const CarPage = observer(() => {
                         </div>
                         <div className={classes['CarPage__info-details-item']}>
                             <p className={classes['CarItem__params-details-item-def']}>Описание:</p>
-
                         </div>
-                        <p className={classes['CarItem__params-description']}>{car.description}</p>
+                        <p style={{whiteSpace: 'pre-line'}} className={classes['CarItem__params-description']}>{car.description}</p>
+                        {/** To buy button **/}
                         <div
                             className={classes['CarPage__info-details-button']}
                             onClick={()=> setSendMessageVisible(true)}
@@ -130,6 +138,14 @@ const CarPage = observer(() => {
                 </div>
             </div>
             <Footer/>
+            {/** Full size image **/}
+            <FullSize
+                visible={fullSizeVisible}
+                setFullSizeVisible={setFullSizeVisible}
+                images={car.images}
+                selectedImg={selectedImg}
+                setSelectedImg={setSelectedImg}
+            />
         </Layout>
     );
 })

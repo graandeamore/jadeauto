@@ -8,6 +8,18 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    &:hover{
+      p {
+        color: $red;
+        transition: color 0.3s;
+      }
+    }
+    &:active, &:focus{
+      p{
+        color: $grey;
+        transition: color 0.3s;
+      }
+    }
     .NavBar__logo-img{
       width: 100px;
       height: 100px;
@@ -16,14 +28,6 @@
     p{
       font-size: $f-middle;
       color: #fefefe;
-      &:hover{
-        color: $red;
-        transition: color 0.3s;
-      }
-      &:active, &:focus{
-        color: $grey;
-        transition: color 0.3s;
-      }
     }
   }
   .NavBar__nav{
