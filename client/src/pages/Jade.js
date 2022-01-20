@@ -22,14 +22,14 @@ const Jade = observer(() => {
             car.setCars(data.rows)
             car.setTotalCount(data.count)
         })
-    },[])
+    },[car])
 
     useEffect(() => {
         fetchCars(car.selectedManufacturer.id, car.selectedCarName.id, car.page, car.limit).then(data => {
             car.setCars(data.rows)
             car.setTotalCount(data.count)
         })
-    }, [car.page, car.selectedManufacturer, car.selectedCarName])
+    }, [car, car.page, car.selectedManufacturer, car.selectedCarName])
 
     return (
         <div className={classes.Jade}>

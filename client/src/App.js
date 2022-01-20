@@ -19,7 +19,7 @@ const App = observer(() => {
             user.setIsAuth(true)                              //authorization -> true
             setUserRole(data.role)
         }).finally(() => setLoading(false))                     //setLoading false anyway
-    },[])                                                 // dependencies, if null -> function will run only 1 time
+    },[user])                                                 // dependencies, if null -> function will run only 1 time
 
     if (loading) {                                      //if loading -> loader
         return <div className={classes.loader}><img src={gif} alt=""/> </div>

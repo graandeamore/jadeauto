@@ -6,7 +6,7 @@ const CreateName = ({visible,setNameVisible}) => {
     const [value, setValue] = useState('');
 
     const addCarName = (event) => {
-        event.preventDefault();                              {/*insanely important!*/}
+        event.preventDefault();
         createCarName({name: value}).then(() => {
             setValue('')
             setNameVisible(false)

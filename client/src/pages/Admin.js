@@ -31,7 +31,7 @@ const Admin = observer(() => {
             car.setCars(data.rows)
             car.setTotalCount(10)
         })
-    }, [car.page,car.selectedManufacturer,car.selectedCarName, car._limit])
+    }, [car, car.page,car.selectedManufacturer,car.selectedCarName, car._limit])
 
     return (
         <Layout>

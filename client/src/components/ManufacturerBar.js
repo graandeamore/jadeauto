@@ -8,7 +8,7 @@ const ManufacturerBar = observer (() => {
 
     useEffect(() => {
         car.setSelectedManufacturer("all");
-    },[])
+    },[car])
 
     const getAllCars= () => {
         car.setSelectedManufacturer("all");

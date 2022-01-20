@@ -19,7 +19,7 @@ const CarItem = ({car}) => {
                 <div className={classes['CarItem__params']}>
                     <p
                         className={classes['CarItem__params-title']}
-                        style={car.status == 'Sold' ? {textDecoration: 'line-through'} : null}
+                        style={car.status === 'Sold' ? {textDecoration: 'line-through'} : null}
                     >{car.manufacturerName} {' '}  {car.nameName}, {car.year}</p>
                     <p className={classes['CarItem__params-motor']}>{car.motor}</p>
                     <p className={classes['CarItem__params-drive']}>{car.drive} привод</p>

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import classes from "../../scss/Modal.module.scss";
 import {deleteCarName} from "../../http/carAPI";
 import {Context} from "../../index";

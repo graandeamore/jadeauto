@@ -21,7 +21,7 @@ const Auth = observer(() => {
         if (user.isAuth) {
             navigate(JADE_ROUTE)
         }
-    },[user])
+    },[user,navigate])
 
     const click = async (event) => {
         event.preventDefault()
