@@ -32,3 +32,5 @@
 **pm2 logs**
 #### Kill all:
 **pm2 kill**
+#### change varchar into database for adding big string into description field:
+**ALTER TABLE cars ALTER COLUMN description TYPE varchar (1000000);**
